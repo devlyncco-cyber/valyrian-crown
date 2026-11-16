@@ -1,0 +1,48 @@
+import { Category } from '@/types';
+
+export const initialCategories: Category[] = [
+  {
+    id: 'c1000000-0000-0000-0000-000000000001',
+    name: 'Signature Streetwear',
+    slug: 'signature-streetwear',
+    description: 'Statement caps with bold patches, graphics and expressive streetwear embroidery.',
+    image_url: '/images/products/cap-5.jpg',
+    is_active: true,
+    created_at: '2026-11-16T00:00:00Z',
+    updated_at: '2026-11-16T00:00:00Z',
+    product_count: 6,
+  },
+  {
+    id: 'c1000000-0000-0000-0000-000000000002',
+    name: 'Minimalist & Athletic',
+    slug: 'minimalist-athletic',
+    description: 'Clean profiles, technical trims, and everyday court and studio essentials.',
+    image_url: '/images/products/cap-2.jpg',
+    is_active: true,
+    created_at: '2026-11-16T00:00:00Z',
+    updated_at: '2026-11-16T00:00:00Z',
+    product_count: 5,
+  },
+  {
+    id: 'c1000000-0000-0000-0000-000000000003',
+    name: 'Vintage & Washed',
+    slug: 'vintage-washed',
+    description: 'Mineral washed twill, corduroy textures and retro dad caps with character.',
+    image_url: '/images/products/cap-20.jpg',
+    is_active: true,
+    created_at: '2026-11-16T00:00:00Z',
+    updated_at: '2026-11-16T00:00:00Z',
+    product_count: 5,
+  },
+  {
+    id: 'c1000000-0000-0000-0000-000000000004',
+    name: 'Statement & Pop',
+    slug: 'statement-pop',
+    description: 'Vibrant colorways, pastel palettes and uplifting embroidery to stand out from the crowd.',
+    image_url: '/images/products/cap-1.jpg',
+    is_active: true,
+    created_at: '2026-11-16T00:00:00Z',
+    updated_at: '2026-11-16T00:00:00Z',
+    product_count: 6,
+  },
+];
