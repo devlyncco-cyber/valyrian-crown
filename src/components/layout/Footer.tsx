@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Phone, MessageSquare, ArrowUpRight, Shield } from 'lucide-react';
+import { Instagram, Phone, MessageSquare, ArrowUpRight } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import { useStoreSettings } from '@/contexts/SettingsContext';
 
@@ -159,13 +159,6 @@ export const Footer: React.FC = () => {
           <p>© {currentYear} {settings.brand_name}. All rights reserved.</p>
           <div className="flex items-center space-x-6">
             <span className="italic text-neutral-400 font-serif">"Wear Power"</span>
-            <Link
-              to="/admin/login"
-              className="text-neutral-600 hover:text-neutral-400 transition-colors flex items-center gap-1"
-            >
-              <Shield className="w-3 h-3" />
-              <span>Admin Portal</span>
-            </Link>
           </div>
         </div>
       </div>

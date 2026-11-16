@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Menu, X, Shield, PhoneCall } from 'lucide-react';
+import { ShoppingBag, Menu, X, PhoneCall } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import { useCartStore } from '@/store/cartStore';
 import { useStoreSettings } from '@/contexts/SettingsContext';
@@ -94,8 +94,8 @@ export const Navbar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Actions: Admin Portal Link & Shopping Cart */}
-          <div className="flex items-center space-x-4 sm:space-x-5">
+          {/* Actions: Phone & Shopping Cart */}
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <a
               href={`tel:${settings.contact_phone}`}
               className="hidden md:flex items-center gap-1.5 text-xs font-heading tracking-wider uppercase text-neutral-600 hover:text-brand-black transition-colors"
@@ -104,15 +104,6 @@ export const Navbar: React.FC = () => {
               <PhoneCall className="w-3.5 h-3.5 text-brand-gold" />
               <span>{settings.contact_phone}</span>
             </a>
-
-            <Link
-              to="/admin/dashboard"
-              className="text-neutral-400 hover:text-brand-black p-2 transition-colors rounded-full hover:bg-neutral-100"
-              title="Administrator Portal"
-              aria-label="Administrator Portal"
-            >
-              <Shield className="w-4 h-4" />
-            </Link>
 
             {/* Shopping Cart Button */}
             <button
@@ -174,15 +165,6 @@ export const Navbar: React.FC = () => {
                   {link.name}
                 </NavLink>
               ))}
-              <div className="pt-4 border-t border-neutral-200">
-                <Link
-                  to="/admin/dashboard"
-                  className="flex items-center gap-2 text-xs uppercase tracking-wider font-heading text-neutral-500 hover:text-brand-black py-2"
-                >
-                  <Shield className="w-4 h-4 text-brand-gold" />
-                  <span>Admin Dashboard</span>
-                </Link>
-              </div>
             </nav>
           </div>
 
