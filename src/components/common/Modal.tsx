@@ -48,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-brand-black/70 backdrop-blur-sm transition-opacity"
@@ -58,19 +58,19 @@ export const Modal: React.FC<ModalProps> = ({
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${widthClasses[maxWidth]} bg-white rounded-lg shadow-2xl border border-neutral-200 overflow-hidden transform transition-all my-8 z-10 animate-fade-in`}
+        className={`relative w-full ${widthClasses[maxWidth]} bg-white rounded-lg shadow-2xl border border-neutral-200 overflow-hidden transform transition-all my-auto z-10 animate-fade-in`}
         role="dialog"
         aria-modal="true"
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100 bg-neutral-50/50">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-neutral-100 bg-neutral-50/50">
           <div>
             {title && (
-              <h3 className="text-base font-heading font-semibold text-brand-black tracking-tight">
+              <h3 className="text-sm sm:text-base font-heading font-semibold text-brand-black tracking-tight">
                 {title}
               </h3>
             )}
             {description && (
-              <p className="text-xs text-neutral-500 mt-0.5">{description}</p>
+              <p className="text-[11px] sm:text-xs text-neutral-500 mt-0.5">{description}</p>
             )}
           </div>
           <button
@@ -82,7 +82,7 @@ export const Modal: React.FC<ModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 max-h-[80vh] overflow-y-auto">{children}</div>
+        <div className="p-4 sm:p-6 max-h-[75vh] sm:max-h-[80vh] overflow-y-auto">{children}</div>
       </div>
     </div>
   );

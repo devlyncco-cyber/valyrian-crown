@@ -138,14 +138,14 @@ export const Admins: React.FC = () => {
       {/* Admin Table */}
       <div className="bg-neutral-900 rounded-lg border border-neutral-800 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+          <table className="w-full min-w-[600px] text-left text-xs">
             <thead className="bg-neutral-950/70 text-neutral-400 font-heading uppercase text-[10px] tracking-wider border-b border-neutral-800">
               <tr>
-                <th className="py-3.5 px-4">Admin Name</th>
-                <th className="py-3.5 px-4">Email</th>
-                <th className="py-3.5 px-4">Role</th>
-                <th className="py-3.5 px-4">Date Granted</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Admin Name</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Email</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Role</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Date Granted</th>
+                <th className="py-3.5 px-4 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-800/80">
@@ -167,7 +167,7 @@ export const Admins: React.FC = () => {
 
                   return (
                     <tr key={adm.id} className="hover:bg-neutral-800/40 transition-colors">
-                      <td className="py-3.5 px-4">
+                      <td className="py-3.5 px-4 whitespace-nowrap">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center font-heading font-bold text-brand-gold">
                             {adm.full_name ? adm.full_name[0].toUpperCase() : 'A'}
@@ -185,18 +185,18 @@ export const Admins: React.FC = () => {
                         </div>
                       </td>
 
-                      <td className="py-3.5 px-4 text-neutral-300 font-mono">
+                      <td className="py-3.5 px-4 text-neutral-300 font-mono whitespace-nowrap">
                         {adm.email || 'Confidential'}
                       </td>
 
-                      <td className="py-3.5 px-4">
+                      <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[10px] font-heading font-semibold uppercase tracking-wider bg-brand-gold/15 text-brand-gold border border-brand-gold/30">
                           <ShieldCheck className="w-3 h-3" />
                           <span>Admin</span>
                         </span>
                       </td>
 
-                      <td className="py-3.5 px-4 text-neutral-400">
+                      <td className="py-3.5 px-4 text-neutral-400 whitespace-nowrap">
                         {new Date(adm.created_at).toLocaleDateString(undefined, {
                           year: 'numeric',
                           month: 'short',

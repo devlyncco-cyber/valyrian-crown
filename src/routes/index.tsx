@@ -13,6 +13,7 @@ import { Cart } from '@/pages/Cart';
 
 // Admin Pages
 import { AdminLogin } from '@/pages/admin/AdminLogin';
+import { AdminSignup } from '@/pages/admin/AdminSignup';
 import { AdminDashboard } from '@/pages/admin/AdminDashboard';
 import { Products } from '@/pages/admin/Products';
 import { ProductForm } from '@/pages/admin/ProductForm';
@@ -33,8 +34,10 @@ export const AppRoutes: React.FC = () => {
         <Route path="/cart" element={<Cart />} />
       </Route>
 
-      {/* Admin Authentication */}
+      {/* Admin Authentication & Setup */}
       <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/signup" element={<AdminSignup />} />
+      <Route path="/admin/setup" element={<Navigate to="/admin/signup" replace />} />
 
       {/* Protected Administrator Dashboard */}
       <Route path="/admin" element={<AdminLayout />}>

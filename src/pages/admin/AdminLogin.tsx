@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Shield, Lock, Mail, ArrowRight, AlertCircle, KeyRound } from 'lucide-react';
+import { Shield, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Logo } from '@/components/common/Logo';
-import { isSupabaseConfigured } from '@/services/supabase/client';
 import { toast } from 'sonner';
 
 export const AdminLogin: React.FC = () => {
-  const { signIn, demoLoginAsAdmin, resetPassword, isAdmin } = useAuth();
+  const { signIn, resetPassword, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -66,12 +65,6 @@ export const AdminLogin: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleDemoLogin = () => {
-    demoLoginAsAdmin();
-    toast.success('Signed in with Demo Administrator privileges!');
-    navigate('/admin/dashboard');
   };
 
   return (
@@ -191,23 +184,6 @@ export const AdminLogin: React.FC = () => {
               </button>
             </form>
           )}
-
-          {/* Quick Demo Bypass */}
-          <div className="pt-4 border-t border-neutral-800">
-            <button
-              onClick={handleDemoLogin}
-              type="button"
-              className="w-full py-2.5 bg-neutral-800/80 hover:bg-neutral-800 text-neutral-300 border border-neutral-700/80 rounded font-heading text-xs font-medium tracking-wide flex items-center justify-center gap-2 transition-colors"
-            >
-              <KeyRound className="w-3.5 h-3.5 text-brand-gold" />
-              <span>Enter in One-Click Admin Mode</span>
-            </button>
-            {!isSupabaseConfigured && (
-              <p className="text-[10px] text-neutral-500 text-center mt-2 leading-relaxed">
-                Supabase credentials not yet provided in .env. Click above to explore full admin CRUD with local data persistence.
-              </p>
-            )}
-          </div>
         </div>
 
         <div className="mt-6 text-center">

@@ -102,6 +102,15 @@ export const AdminLayout: React.FC = () => {
         </button>
       </div>
 
+      {/* Mobile Sidebar Backdrop */}
+      {mobileSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Sidebar (Desktop & Mobile Drawer) */}
       <aside
         className={`fixed md:sticky top-0 h-screen w-64 bg-neutral-900 border-r border-neutral-800 flex flex-col justify-between p-5 z-50 transition-transform duration-300 ease-in-out ${

@@ -161,16 +161,16 @@ export const Products: React.FC = () => {
       {/* Table */}
       <div className="bg-neutral-900 rounded-lg border border-neutral-800 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+          <table className="w-full min-w-[700px] text-left text-xs">
             <thead className="bg-neutral-950/70 text-neutral-400 font-heading uppercase text-[10px] tracking-wider border-b border-neutral-800">
               <tr>
-                <th className="py-3.5 px-4">Product</th>
-                <th className="py-3.5 px-4">Category</th>
-                <th className="py-3.5 px-4">Price</th>
-                <th className="py-3.5 px-4">Status</th>
-                <th className="py-3.5 px-4">Featured</th>
-                <th className="py-3.5 px-4">Published</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Product</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Category</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Price</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Status</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Featured</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Published</th>
+                <th className="py-3.5 px-4 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-800/80">
@@ -196,7 +196,7 @@ export const Products: React.FC = () => {
                   return (
                     <tr key={p.id} className="hover:bg-neutral-800/40 transition-colors">
                       {/* Name & Photo */}
-                      <td className="py-3 px-4">
+                      <td className="py-3 px-4 whitespace-nowrap">
                         <div className="flex items-center gap-3">
                           <img
                             src={primaryImage}
@@ -215,12 +215,12 @@ export const Products: React.FC = () => {
                       </td>
 
                       {/* Category */}
-                      <td className="py-3 px-4 text-neutral-300">
+                      <td className="py-3 px-4 text-neutral-300 whitespace-nowrap">
                         {p.category?.name || 'Unassigned'}
                       </td>
 
                       {/* Price */}
-                      <td className="py-3 px-4 font-heading font-semibold text-white">
+                      <td className="py-3 px-4 font-heading font-semibold text-white whitespace-nowrap">
                         GH₵{Number(p.price).toFixed(2)}
                         {p.sale_price && (
                           <span className="block text-[10px] text-brand-gold font-normal">
@@ -230,12 +230,12 @@ export const Products: React.FC = () => {
                       </td>
 
                       {/* Availability status */}
-                      <td className="py-3 px-4">
+                      <td className="py-3 px-4 whitespace-nowrap">
                         <Badge status={p.availability_status} />
                       </td>
 
                       {/* Featured toggle */}
-                      <td className="py-3 px-4">
+                      <td className="py-3 px-4 whitespace-nowrap">
                         <button
                           onClick={() => handleToggleFeatured(p)}
                           className={`p-1.5 rounded transition-colors ${
@@ -250,7 +250,7 @@ export const Products: React.FC = () => {
                       </td>
 
                       {/* Published toggle */}
-                      <td className="py-3 px-4">
+                      <td className="py-3 px-4 whitespace-nowrap">
                         <button
                           onClick={() => handleTogglePublish(p)}
                           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-heading font-semibold uppercase tracking-wider transition-colors ${
@@ -274,7 +274,7 @@ export const Products: React.FC = () => {
                       </td>
 
                       {/* Actions */}
-                      <td className="py-3 px-4 text-right">
+                      <td className="py-3 px-4 text-right whitespace-nowrap">
                         <div className="flex items-center justify-end gap-2">
                           <Link
                             to={`/product/${p.slug}`}

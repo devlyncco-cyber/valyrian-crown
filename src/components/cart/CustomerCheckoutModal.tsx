@@ -140,7 +140,7 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
       description="Provide your delivery details. Delivery charges are calculated by the seller in WhatsApp."
       maxWidth="lg"
     >
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-5">
         {/* Order Summary Pill */}
         <div className="p-3.5 bg-neutral-50 rounded-lg border border-neutral-200/80 flex items-center justify-between text-xs">
           <div>

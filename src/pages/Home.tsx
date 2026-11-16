@@ -160,7 +160,7 @@ export const Home: React.FC = () => {
                 </div>
 
                 {/* Floating Secondary Cap Card */}
-                <div className="hidden sm:block absolute -bottom-6 -left-6 z-20 bg-neutral-900/95 backdrop-blur-md rounded-lg p-3 border border-neutral-700/60 shadow-xl w-48">
+                <div className="hidden sm:block absolute sm:bottom-2 sm:left-2 lg:-bottom-6 lg:-left-6 z-20 bg-neutral-900/95 backdrop-blur-md rounded-lg p-3 border border-neutral-700/60 shadow-xl w-48">
                   <div className="flex items-center gap-3">
                     <img
                       src="/images/products/cap-2.jpg"

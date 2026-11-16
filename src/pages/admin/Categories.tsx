@@ -155,15 +155,15 @@ export const Categories: React.FC = () => {
       {/* Categories Table */}
       <div className="bg-neutral-900 rounded-lg border border-neutral-800 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+          <table className="w-full min-w-[600px] text-left text-xs">
             <thead className="bg-neutral-950/70 text-neutral-400 font-heading uppercase text-[10px] tracking-wider border-b border-neutral-800">
               <tr>
-                <th className="py-3.5 px-4">Category Name</th>
-                <th className="py-3.5 px-4">Slug</th>
-                <th className="py-3.5 px-4">Description</th>
-                <th className="py-3.5 px-4">Active Caps</th>
-                <th className="py-3.5 px-4">Status</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Category Name</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Slug</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Description</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Active Caps</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Status</th>
+                <th className="py-3.5 px-4 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-800/80">
@@ -182,19 +182,19 @@ export const Categories: React.FC = () => {
               ) : (
                 categories.map((cat) => (
                   <tr key={cat.id} className="hover:bg-neutral-800/40 transition-colors">
-                    <td className="py-3.5 px-4 font-heading font-semibold text-white">
+                    <td className="py-3.5 px-4 font-heading font-semibold text-white whitespace-nowrap">
                       {cat.name}
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-[11px] text-neutral-400">
+                    <td className="py-3.5 px-4 font-mono text-[11px] text-neutral-400 whitespace-nowrap">
                       /{cat.slug}
                     </td>
                     <td className="py-3.5 px-4 text-neutral-300 max-w-xs truncate">
                       {cat.description || '—'}
                     </td>
-                    <td className="py-3.5 px-4 text-brand-gold font-heading font-medium">
+                    <td className="py-3.5 px-4 text-brand-gold font-heading font-medium whitespace-nowrap">
                       {cat.product_count ?? 0} caps
                     </td>
-                    <td className="py-3.5 px-4">
+                    <td className="py-3.5 px-4 whitespace-nowrap">
                       <span
                         className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[10px] font-heading font-semibold uppercase tracking-wider ${
                           cat.is_active
@@ -205,7 +205,7 @@ export const Categories: React.FC = () => {
                         {cat.is_active ? 'Active' : 'Hidden'}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-right">
+                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(cat)}

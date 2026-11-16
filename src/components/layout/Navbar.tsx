@@ -36,10 +36,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       {/* Top Brand Notification Banner */}
-      <div className="bg-brand-black text-brand-cream text-[11px] font-heading font-medium tracking-widest uppercase py-2 px-4 text-center border-b border-white/10 flex items-center justify-center gap-4">
-        <span>{settings.brand_tagline}</span>
-        <span className="hidden sm:inline text-brand-gold">•</span>
-        <span className="hidden sm:inline text-gray-300">
+      <div className="bg-brand-black text-brand-cream text-[10px] sm:text-[11px] font-heading font-medium tracking-widest uppercase py-2 px-3 sm:px-4 text-center border-b border-white/10 flex items-center justify-center gap-2 sm:gap-4">
+        <span className="truncate">{settings.brand_tagline}</span>
+        <span className="hidden sm:inline text-brand-gold shrink-0">•</span>
+        <span className="hidden sm:inline text-gray-300 shrink-0">
           WhatsApp Orders: {settings.contact_phone}
         </span>
       </div>
@@ -65,8 +65,9 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Brand Logo */}
-          <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
-            <Logo variant="dark" />
+          <div className="flex-1 lg:flex-none flex justify-center lg:justify-start px-2 min-w-0">
+            <Logo variant="dark" showTagline={false} className="lg:hidden" />
+            <Logo variant="dark" showTagline={true} className="hidden lg:inline-flex" />
           </div>
 
           {/* Desktop Navigation Links */}

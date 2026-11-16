@@ -334,21 +334,21 @@ export const ProductDetails: React.FC = () => {
           </div>
 
           {/* Guarantees / Service Badges */}
-          <div className="grid grid-cols-3 gap-3 pt-6 border-t border-neutral-200/80 text-center">
-            <div className="p-3 bg-white rounded border border-neutral-200/60">
-              <Truck className="w-5 h-5 mx-auto text-brand-gold mb-1" />
-              <p className="text-[10px] uppercase font-heading font-bold text-neutral-800">Fast Delivery</p>
-              <p className="text-[9px] text-neutral-500">Across Ghana</p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-6 border-t border-neutral-200/80 text-center">
+            <div className="p-2 sm:p-3 bg-white rounded border border-neutral-200/60">
+              <Truck className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-brand-gold mb-1" />
+              <p className="text-[9px] sm:text-[10px] uppercase font-heading font-bold text-neutral-800 leading-tight">Fast Delivery</p>
+              <p className="text-[8px] sm:text-[9px] text-neutral-500 mt-0.5">Across Ghana</p>
             </div>
-            <div className="p-3 bg-white rounded border border-neutral-200/60">
-              <ShieldCheck className="w-5 h-5 mx-auto text-brand-gold mb-1" />
-              <p className="text-[10px] uppercase font-heading font-bold text-neutral-800">100% Authentic</p>
-              <p className="text-[9px] text-neutral-500">Original Quality</p>
+            <div className="p-2 sm:p-3 bg-white rounded border border-neutral-200/60">
+              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-brand-gold mb-1" />
+              <p className="text-[9px] sm:text-[10px] uppercase font-heading font-bold text-neutral-800 leading-tight">100% Authentic</p>
+              <p className="text-[8px] sm:text-[9px] text-neutral-500 mt-0.5">Original Quality</p>
             </div>
-            <div className="p-3 bg-white rounded border border-neutral-200/60">
-              <RotateCcw className="w-5 h-5 mx-auto text-brand-gold mb-1" />
-              <p className="text-[10px] uppercase font-heading font-bold text-neutral-800">Personal Support</p>
-              <p className="text-[9px] text-neutral-500">Direct on WhatsApp</p>
+            <div className="p-2 sm:p-3 bg-white rounded border border-neutral-200/60">
+              <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-brand-gold mb-1" />
+              <p className="text-[9px] sm:text-[10px] uppercase font-heading font-bold text-neutral-800 leading-tight">Personal Support</p>
+              <p className="text-[8px] sm:text-[9px] text-neutral-500 mt-0.5">Direct on WhatsApp</p>
             </div>
           </div>
 

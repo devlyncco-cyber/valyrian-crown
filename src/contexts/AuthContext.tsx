@@ -10,6 +10,7 @@ interface AuthContextType {
   isAdmin: boolean;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUpAdmin: (email: string, password: string, fullName: string) => Promise<{ error: Error | null; user?: User | null }>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ error: Error | null }>;
   demoLoginAsAdmin: () => void;
@@ -133,6 +134,63 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const signUpAdmin = async (email: string, password: string, fullName: string) => {
+    if (!isSupabaseConfigured) {
+      const newAdmin: Profile = {
+        id: crypto.randomUUID(),
+        email,
+        full_name: fullName,
+        role: 'admin',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      localStorage.setItem('valyrian_demo_admin_session', JSON.stringify(newAdmin));
+      setProfile(newAdmin);
+      setUser({ id: newAdmin.id, email } as any);
+      return { error: null, user: { id: newAdmin.id, email } as any };
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName,
+            role: 'admin',
+          },
+        },
+      });
+
+      if (error) return { error };
+
+      if (data.user) {
+        // Ensure role = 'admin' in profiles table
+        try {
+          await supabase.from('profiles').upsert({
+            id: data.user.id,
+            full_name: fullName,
+            role: 'admin',
+          });
+        } catch (e) {
+          console.warn('Profile upsert note:', e);
+        }
+
+        if (data.session) {
+          setSession(data.session);
+          setUser(data.user);
+          await fetchProfile(data.user.id);
+        }
+
+        return { error: null, user: data.user };
+      }
+
+      return { error: null };
+    } catch (err: any) {
+      return { error: err };
+    }
+  };
+
   const signOut = async () => {
     if (isSupabaseConfigured) {
       await supabase.auth.signOut();
@@ -170,6 +228,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAdmin,
         isLoading,
         signIn,
+        signUpAdmin,
         signOut,
         resetPassword,
         demoLoginAsAdmin,
