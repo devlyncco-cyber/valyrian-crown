@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Layers,
   PlusCircle,
   Edit,
   Trash2,
-  CheckCircle,
-  Eye,
-  EyeOff,
   AlertTriangle,
 } from 'lucide-react';
 import { Category } from '@/types';
@@ -133,90 +129,90 @@ export const Categories: React.FC = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#EAEAEA]">
         <div>
-          <h1 className="text-2xl font-heading font-bold uppercase tracking-tight text-white">
+          <h1 className="text-2xl font-heading font-medium uppercase tracking-tight text-[#111111]">
             Category Management
           </h1>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[#777777] mt-1">
             Organize products into curated thematic streetwear collections.
           </p>
         </div>
 
         <button
           onClick={openCreateModal}
-          className="px-4 py-2.5 bg-brand-gold hover:bg-brand-gold-light text-brand-black rounded text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-colors self-start sm:self-auto shadow-luxury"
+          className="px-4 py-2.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium uppercase tracking-wider flex items-center gap-2 transition-colors self-start sm:self-auto"
         >
-          <PlusCircle className="w-4 h-4" />
+          <PlusCircle className="w-3.5 h-3.5" />
           <span>New Category</span>
         </button>
       </div>
 
       {/* Categories Table */}
-      <div className="bg-neutral-900 rounded-lg border border-neutral-800 overflow-hidden shadow-sm">
+      <div className="bg-white rounded-[1px] border border-[#EAEAEA] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[600px] text-left text-xs">
-            <thead className="bg-neutral-950/70 text-neutral-400 font-heading uppercase text-[10px] tracking-wider border-b border-neutral-800">
+            <thead className="bg-[#FAFAF8] text-[#777777] font-mono uppercase text-[10px] tracking-wider border-b border-[#EAEAEA]">
               <tr>
-                <th className="py-3.5 px-4 whitespace-nowrap">Category Name</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Slug</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Description</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Active Caps</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Status</th>
-                <th className="py-3.5 px-4 text-right whitespace-nowrap">Actions</th>
+                <th className="py-3 px-4">Category Name</th>
+                <th className="py-3 px-4">Slug</th>
+                <th className="py-3 px-4">Description</th>
+                <th className="py-3 px-4">Active Caps</th>
+                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/80">
+            <tbody className="divide-y divide-[#EAEAEA]">
               {isLoading ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-neutral-500">
+                  <td colSpan={6} className="py-12 text-center text-[#777777]">
                     Loading categories...
                   </td>
                 </tr>
               ) : categories.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-neutral-500">
+                  <td colSpan={6} className="py-12 text-center text-[#777777]">
                     No categories found. Click 'New Category' to add one.
                   </td>
                 </tr>
               ) : (
                 categories.map((cat) => (
-                  <tr key={cat.id} className="hover:bg-neutral-800/40 transition-colors">
-                    <td className="py-3.5 px-4 font-heading font-semibold text-white whitespace-nowrap">
+                  <tr key={cat.id} className="hover:bg-[#FAFAF8] transition-colors">
+                    <td className="py-3 px-4 font-heading font-medium uppercase tracking-wide text-[#111111]">
                       {cat.name}
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-[11px] text-neutral-400 whitespace-nowrap">
+                    <td className="py-3 px-4 font-mono text-[11px] text-[#777777]">
                       /{cat.slug}
                     </td>
-                    <td className="py-3.5 px-4 text-neutral-300 max-w-xs truncate">
+                    <td className="py-3 px-4 text-[#777777] max-w-xs truncate">
                       {cat.description || '—'}
                     </td>
-                    <td className="py-3.5 px-4 text-brand-gold font-heading font-medium whitespace-nowrap">
+                    <td className="py-3 px-4 font-mono text-[#111111]">
                       {cat.product_count ?? 0} caps
                     </td>
-                    <td className="py-3.5 px-4 whitespace-nowrap">
+                    <td className="py-3 px-4">
                       <span
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[10px] font-heading font-semibold uppercase tracking-wider ${
+                        className={`inline-flex items-center px-2 py-0.5 rounded-[1px] text-[10px] font-mono uppercase tracking-wider border ${
                           cat.is_active
-                            ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-800'
-                            : 'bg-neutral-800 text-neutral-400 border border-neutral-700'
+                            ? 'bg-white text-[#111111] border-[#111111]'
+                            : 'bg-[#FAFAF8] text-[#777777] border-[#EAEAEA]'
                         }`}
                       >
                         {cat.is_active ? 'Active' : 'Hidden'}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                    <td className="py-3 px-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(cat)}
-                          className="p-1.5 text-neutral-400 hover:text-brand-gold rounded hover:bg-neutral-800"
+                          className="p-1.5 text-[#777777] hover:text-[#111111] rounded-[1px] hover:bg-[#FAFAF8]"
                           title="Edit Category"
                         >
                           <Edit className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => setDeleteCat(cat)}
-                          className="p-1.5 text-neutral-400 hover:text-red-400 rounded hover:bg-neutral-800"
+                          className="p-1.5 text-[#777777] hover:text-red-600 rounded-[1px] hover:bg-red-50"
                           title="Delete Category"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -239,7 +235,7 @@ export const Categories: React.FC = () => {
       >
         <form onSubmit={handleSave} className="space-y-4">
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Category Name *
             </label>
             <input
@@ -248,12 +244,12 @@ export const Categories: React.FC = () => {
               value={formName}
               onChange={(e) => handleNameChange(e.target.value)}
               placeholder="e.g. Signature Streetwear"
-              className="w-full px-3.5 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+              className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               URL Slug *
             </label>
             <input
@@ -262,12 +258,12 @@ export const Categories: React.FC = () => {
               value={formSlug}
               onChange={(e) => setFormSlug(e.target.value)}
               placeholder="signature-streetwear"
-              className="w-full px-3.5 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black font-mono"
+              className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111] font-mono"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Description
             </label>
             <textarea
@@ -275,7 +271,7 @@ export const Categories: React.FC = () => {
               value={formDesc}
               onChange={(e) => setFormDesc(e.target.value)}
               placeholder="Brief description of the cap styles in this category..."
-              className="w-full px-3.5 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+              className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
             />
           </div>
 
@@ -284,25 +280,25 @@ export const Categories: React.FC = () => {
               type="checkbox"
               checked={formActive}
               onChange={(e) => setFormActive(e.target.checked)}
-              className="w-4 h-4 rounded text-brand-black"
+              className="w-4 h-4 rounded-[1px] text-[#111111] border-[#EAEAEA]"
             />
-            <span className="text-xs font-heading font-semibold text-neutral-700 uppercase tracking-wide">
+            <span className="text-xs uppercase tracking-wider text-[#111111] font-medium">
               Category Active & Visible to Shoppers
             </span>
           </label>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-neutral-100">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EAEAEA]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 text-xs font-heading uppercase text-neutral-600 hover:text-neutral-900"
+              className="px-4 py-2 text-xs uppercase tracking-wider text-[#777777] hover:text-[#111111]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="px-6 py-2.5 bg-brand-black text-brand-cream hover:bg-neutral-800 rounded text-xs font-heading font-semibold uppercase tracking-wider shadow-sm disabled:opacity-50"
+              className="px-6 py-2.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium uppercase tracking-widest disabled:opacity-40 transition-colors"
             >
               {isSaving ? 'Saving...' : editingCategory ? 'Update Category' : 'Create Category'}
             </button>
@@ -318,25 +314,25 @@ export const Categories: React.FC = () => {
         maxWidth="sm"
       >
         <div className="space-y-4">
-          <p className="text-xs text-neutral-600 leading-relaxed">
+          <p className="text-xs text-[#777777] leading-relaxed">
             Are you sure you want to remove the{' '}
-            <strong className="text-neutral-900">{deleteCat?.name}</strong> category?
+            <strong className="text-[#111111]">{deleteCat?.name}</strong> category?
           </p>
 
           {deleteCat && (deleteCat.product_count ?? 0) > 0 && (
-            <div className="p-3 bg-amber-50 border border-amber-200 rounded flex items-start gap-2 text-amber-900 text-xs">
-              <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+            <div className="p-3 bg-[#FAFAF8] border border-[#EAEAEA] rounded-[1px] flex items-start gap-2 text-[#111111] text-xs">
+              <AlertTriangle className="w-4 h-4 text-[#111111] shrink-0 mt-0.5" />
               <span>
                 This category currently contains {deleteCat.product_count} product(s). You must reassign those products before deleting this category.
               </span>
             </div>
           )}
 
-          <div className="flex items-center justify-end gap-3 pt-3">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#EAEAEA]">
             <button
               type="button"
               onClick={() => setDeleteCat(null)}
-              className="px-4 py-2 text-xs font-heading uppercase text-neutral-600 hover:text-neutral-900"
+              className="px-4 py-2 text-xs uppercase tracking-wider text-[#777777] hover:text-[#111111]"
             >
               Cancel
             </button>
@@ -344,7 +340,7 @@ export const Categories: React.FC = () => {
               type="button"
               disabled={isDeleting || Boolean(deleteCat && (deleteCat.product_count ?? 0) > 0)}
               onClick={handleDelete}
-              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-xs font-heading font-semibold uppercase tracking-wider disabled:opacity-40"
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-[1px] text-xs font-medium uppercase tracking-wider disabled:opacity-40"
             >
               {isDeleting ? 'Deleting...' : 'Confirm Delete'}
             </button>

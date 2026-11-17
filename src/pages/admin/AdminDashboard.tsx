@@ -55,63 +55,50 @@ export const AdminDashboard: React.FC = () => {
     {
       title: 'Total Caps',
       value: totalProducts,
-      sub: 'All product designs in system',
+      sub: 'All product designs',
       icon: Package,
-      color: 'text-white',
-      border: 'border-neutral-800',
     },
     {
       title: 'Published',
       value: publishedProducts,
       sub: 'Visible on customer shop',
       icon: CheckCircle2,
-      color: 'text-emerald-400',
-      border: 'border-emerald-900/40',
     },
     {
-      title: 'Featured Drops',
+      title: 'Featured',
       value: featuredProducts,
-      sub: 'Shown in featured section',
+      sub: 'Shown in featured collection',
       icon: Sparkles,
-      color: 'text-brand-gold',
-      border: 'border-brand-gold/30',
     },
     {
       title: 'Out of Stock',
       value: outOfStockProducts,
-      sub: 'Requires restock attention',
+      sub: 'Requires restock',
       icon: AlertTriangle,
-      color: 'text-amber-400',
-      border: 'border-amber-900/40',
     },
     {
-      title: 'Draft / Unpublished',
+      title: 'Draft',
       value: draftProducts,
-      sub: 'Hidden from public storefront',
+      sub: 'Hidden from storefront',
       icon: Eye,
-      color: 'text-neutral-400',
-      border: 'border-neutral-800',
     },
     {
       title: 'Categories',
       value: totalCategories,
-      sub: 'Active catalogue collections',
+      sub: 'Active collections',
       icon: Layers,
-      color: 'text-sky-400',
-      border: 'border-neutral-800',
     },
   ];
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
       {/* Top Welcome Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#EAEAEA]">
         <div>
-          <div className="flex items-center gap-2 text-brand-gold text-xs font-heading font-medium tracking-widest uppercase mb-1">
-            <ShieldCheck className="w-4 h-4" />
-            <span>ValyrianCrown Administrator Command Center</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-heading font-bold uppercase tracking-tight text-white">
+          <p className="text-[11px] uppercase tracking-widest text-[#777777]">
+            ValyrianCrown Management
+          </p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-medium uppercase tracking-tight text-[#111111] mt-1">
             Dashboard Overview
           </h1>
         </div>
@@ -119,33 +106,33 @@ export const AdminDashboard: React.FC = () => {
         <div className="flex flex-wrap items-center gap-3">
           <Link
             to="/admin/products/new"
-            className="px-4 py-2.5 bg-brand-gold hover:bg-brand-gold-light text-brand-black rounded text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-colors shadow-luxury"
+            className="px-4 py-2.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium uppercase tracking-wider flex items-center gap-2 transition-colors"
           >
-            <PlusCircle className="w-4 h-4" />
+            <PlusCircle className="w-3.5 h-3.5" />
             <span>Add New Cap</span>
           </Link>
           <Link
             to="/admin/admins"
-            className="px-4 py-2.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded text-xs font-heading font-medium uppercase tracking-wider flex items-center gap-2 transition-colors border border-neutral-700"
+            className="px-4 py-2.5 bg-white hover:bg-[#FAFAF8] text-[#111111] rounded-[1px] text-xs font-medium uppercase tracking-wider flex items-center gap-2 transition-colors border border-[#EAEAEA]"
           >
-            <Users className="w-4 h-4 text-brand-gold" />
+            <Users className="w-3.5 h-3.5 text-[#111111]" />
             <span>Manage Admins</span>
           </Link>
         </div>
       </div>
 
       {/* Notice Reminder: Manual WhatsApp Checkout */}
-      <div className="bg-neutral-900/90 border border-brand-gold/30 rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white border border-[#EAEAEA] rounded-[1px] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start sm:items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5" />
+          <div className="w-8 h-8 rounded-[1px] bg-[#FAFAF8] border border-[#EAEAEA] text-[#111111] flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-xs uppercase font-heading font-bold tracking-wider text-brand-gold">
-              Catalogue Management Architecture
+            <h4 className="text-xs uppercase font-medium tracking-wider text-[#111111]">
+              Order Processing Model
             </h4>
-            <p className="text-xs text-neutral-400 mt-0.5">
-              Customer orders are submitted directly through WhatsApp to <span className="text-neutral-200 font-semibold">{settings.whatsapp_number}</span>. No customer payment credentials or internal order records are stored.
+            <p className="text-xs text-[#777777] mt-0.5">
+              Customer orders are submitted directly through WhatsApp to <span className="text-[#111111] font-mono">+{settings.whatsapp_number}</span>. No customer payment credentials or internal order records are stored.
             </p>
           </div>
         </div>
@@ -158,18 +145,18 @@ export const AdminDashboard: React.FC = () => {
           return (
             <div
               key={stat.title}
-              className={`bg-neutral-900/90 rounded-lg p-4 border ${stat.border} shadow-sm space-y-2`}
+              className="bg-white rounded-[1px] p-4 border border-[#EAEAEA] space-y-2"
             >
-              <div className="flex items-center justify-between text-neutral-400">
-                <span className="text-[10px] uppercase font-heading tracking-wider truncate">
+              <div className="flex items-center justify-between text-[#777777]">
+                <span className="text-[10px] uppercase font-mono tracking-wider truncate">
                   {stat.title}
                 </span>
-                <Icon className={`w-4 h-4 ${stat.color}`} />
+                <Icon className="w-3.5 h-3.5 text-[#111111]" />
               </div>
-              <p className={`text-2xl font-heading font-bold ${stat.color}`}>
+              <p className="text-2xl font-mono text-[#111111]">
                 {isLoading ? '...' : stat.value}
               </p>
-              <p className="text-[10px] text-neutral-500 leading-tight">
+              <p className="text-[10px] text-[#777777] leading-tight">
                 {stat.sub}
               </p>
             </div>
@@ -180,21 +167,21 @@ export const AdminDashboard: React.FC = () => {
       {/* Quick Links & Recent Updates Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Recent Product Updates */}
-        <div className="lg:col-span-8 bg-neutral-900 rounded-lg border border-neutral-800 p-5 sm:p-6 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
-            <h2 className="text-sm uppercase font-heading font-bold tracking-wider text-white">
-              Recent Product Catalog Updates
+        <div className="lg:col-span-8 bg-white rounded-[1px] border border-[#EAEAEA] p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#EAEAEA]">
+            <h2 className="text-xs uppercase font-medium tracking-wider text-[#111111]">
+              Recent Catalogue Updates
             </h2>
             <Link
               to="/admin/products"
-              className="text-xs font-heading font-semibold text-brand-gold hover:underline flex items-center gap-1"
+              className="text-xs tracking-wider uppercase text-[#777777] hover:text-[#111111] flex items-center gap-1 transition-colors"
             >
               <span>View All Products</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
 
-          <div className="divide-y divide-neutral-800/80">
+          <div className="divide-y divide-[#EAEAEA]">
             {products.slice(0, 6).map((product) => {
               const primaryImage =
                 product.images?.find((img) => img.is_primary)?.image_url ||
@@ -207,22 +194,22 @@ export const AdminDashboard: React.FC = () => {
                     <img
                       src={primaryImage}
                       alt={product.name}
-                      className="w-12 h-12 rounded object-cover bg-neutral-800 shrink-0 border border-neutral-700"
+                      className="w-12 h-12 rounded-[1px] object-cover bg-[#F5F5F3] shrink-0 border border-[#EAEAEA]"
                     />
                     <div className="min-w-0">
-                      <p className="text-xs font-heading font-semibold text-white truncate">
+                      <p className="text-xs font-heading font-medium uppercase tracking-tight text-[#111111] truncate">
                         {product.name}
                       </p>
-                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-neutral-400">
-                        <span>GH₵{Number(product.price).toFixed(2)}</span>
+                      <div className="flex items-center gap-2 mt-0.5 text-[11px] text-[#777777]">
+                        <span className="font-mono">GH₵{Number(product.price).toFixed(2)}</span>
                         <span>•</span>
-                        <span className={product.is_published ? 'text-emerald-400' : 'text-neutral-500'}>
+                        <span>
                           {product.is_published ? 'Published' : 'Draft'}
                         </span>
                         {product.is_featured && (
                           <>
                             <span>•</span>
-                            <span className="text-brand-gold">Featured</span>
+                            <span className="text-[#111111] font-medium">Featured</span>
                           </>
                         )}
                       </div>
@@ -231,7 +218,7 @@ export const AdminDashboard: React.FC = () => {
 
                   <Link
                     to={`/admin/products/edit/${product.id}`}
-                    className="p-2 text-neutral-400 hover:text-white rounded hover:bg-neutral-800 transition-colors"
+                    className="p-1.5 text-[#777777] hover:text-[#111111] rounded-[1px] hover:bg-[#FAFAF8] transition-colors"
                     title="Edit cap"
                   >
                     <Edit className="w-4 h-4" />
@@ -244,72 +231,72 @@ export const AdminDashboard: React.FC = () => {
 
         {/* Right Column: Quick Administration Actions */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="bg-neutral-900 rounded-lg border border-neutral-800 p-5 space-y-4">
-            <h3 className="text-xs uppercase font-heading font-bold tracking-wider text-neutral-300">
-              Quick Management Shortcuts
+          <div className="bg-white rounded-[1px] border border-[#EAEAEA] p-5 space-y-3">
+            <h3 className="text-xs uppercase font-medium tracking-wider text-[#111111]">
+              Management Shortcuts
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-2 pt-1">
               <Link
                 to="/admin/products/new"
-                className="w-full p-3 bg-neutral-800/80 hover:bg-neutral-800 rounded flex items-center justify-between text-xs font-heading text-neutral-200 transition-colors"
+                className="w-full p-3 bg-[#FAFAF8] hover:bg-[#F0F0EE] border border-[#EAEAEA] rounded-[1px] flex items-center justify-between text-xs text-[#111111] transition-colors"
               >
                 <span className="flex items-center gap-2.5">
-                  <PlusCircle className="w-4 h-4 text-brand-gold" />
+                  <PlusCircle className="w-4 h-4 text-[#111111]" />
                   <span>Create Product Listing</span>
                 </span>
-                <ArrowRight className="w-4 h-4 text-neutral-500" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#777777]" />
               </Link>
 
               <Link
                 to="/admin/categories"
-                className="w-full p-3 bg-neutral-800/80 hover:bg-neutral-800 rounded flex items-center justify-between text-xs font-heading text-neutral-200 transition-colors"
+                className="w-full p-3 bg-[#FAFAF8] hover:bg-[#F0F0EE] border border-[#EAEAEA] rounded-[1px] flex items-center justify-between text-xs text-[#111111] transition-colors"
               >
                 <span className="flex items-center gap-2.5">
-                  <Layers className="w-4 h-4 text-sky-400" />
+                  <Layers className="w-4 h-4 text-[#111111]" />
                   <span>Manage Categories</span>
                 </span>
-                <ArrowRight className="w-4 h-4 text-neutral-500" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#777777]" />
               </Link>
 
               <Link
                 to="/admin/admins"
-                className="w-full p-3 bg-neutral-800/80 hover:bg-neutral-800 rounded flex items-center justify-between text-xs font-heading text-neutral-200 transition-colors"
+                className="w-full p-3 bg-[#FAFAF8] hover:bg-[#F0F0EE] border border-[#EAEAEA] rounded-[1px] flex items-center justify-between text-xs text-[#111111] transition-colors"
               >
                 <span className="flex items-center gap-2.5">
-                  <Users className="w-4 h-4 text-emerald-400" />
+                  <Users className="w-4 h-4 text-[#111111]" />
                   <span>Add / Manage Admins</span>
                 </span>
-                <ArrowRight className="w-4 h-4 text-neutral-500" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#777777]" />
               </Link>
 
               <Link
                 to="/admin/settings"
-                className="w-full p-3 bg-neutral-800/80 hover:bg-neutral-800 rounded flex items-center justify-between text-xs font-heading text-neutral-200 transition-colors"
+                className="w-full p-3 bg-[#FAFAF8] hover:bg-[#F0F0EE] border border-[#EAEAEA] rounded-[1px] flex items-center justify-between text-xs text-[#111111] transition-colors"
               >
                 <span className="flex items-center gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-brand-gold" />
+                  <ShieldCheck className="w-4 h-4 text-[#111111]" />
                   <span>Store Identity & Contacts</span>
                 </span>
-                <ArrowRight className="w-4 h-4 text-neutral-500" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#777777]" />
               </Link>
             </div>
           </div>
 
-          {/* Live Storefront Preview Box */}
-          <div className="bg-neutral-900 rounded-lg border border-neutral-800 p-5 space-y-3">
-            <h3 className="text-xs uppercase font-heading font-bold tracking-wider text-neutral-300">
-              Customer Storefront
+          {/* Live Storefront Box */}
+          <div className="bg-white rounded-[1px] border border-[#EAEAEA] p-5 space-y-2.5">
+            <h3 className="text-xs uppercase font-medium tracking-wider text-[#111111]">
+              Live Storefront
             </h3>
-            <p className="text-xs text-neutral-400 leading-relaxed">
+            <p className="text-xs text-[#777777] leading-relaxed">
               Preview how changes to products, prices, and settings appear to your customers in real time.
             </p>
             <Link
               to="/"
               target="_blank"
-              className="inline-flex items-center gap-2 text-xs font-heading font-semibold uppercase tracking-wider text-brand-gold hover:underline pt-1"
+              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-[#111111] hover:underline pt-1 font-medium"
             >
-              <span>Launch Live Storefront</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Launch Storefront</span>
+              <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
         </div>

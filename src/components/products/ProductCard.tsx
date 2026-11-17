@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Eye, Check } from 'lucide-react';
 import { Product } from '@/types';
 import { Badge } from '@/components/common/Badge';
 import { useCartStore } from '@/store/cartStore';
@@ -45,7 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     e.stopPropagation();
 
     if (isOutOfStock) {
-      toast.error('This product is currently out of stock.');
+      toast.error('This cap is currently sold out.');
       return;
     }
 
@@ -54,97 +53,55 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
 
     addItem(product, 1, defaultSize, defaultVariant);
     setJustAdded(true);
-    toast.success(`${product.name} added to cart!`);
-    setTimeout(() => setJustAdded(false), 2000);
+    toast.success(`${product.name} added to bag.`);
+    setTimeout(() => setJustAdded(false), 1800);
   };
 
   return (
     <div
-      className="group relative flex flex-col bg-white rounded-md overflow-hidden border border-neutral-200/70 hover:border-neutral-300 shadow-sm hover:shadow-luxury transition-all duration-300"
+      className="group relative flex flex-col bg-transparent"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
       <Link
         to={`/product/${product.slug}`}
-        className="relative block w-full pt-[100%] overflow-hidden bg-brand-cream"
+        className="relative block w-full aspect-square overflow-hidden bg-[#F5F5F3]"
       >
         <img
           src={isHovered && secondaryImage ? secondaryImage : primaryImage}
           alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-95"
           loading="lazy"
         />
 
-        {/* Badges Overlay */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col gap-1 z-10 pointer-events-none">
+        {/* Minimal Badge Overlay */}
+        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 pointer-events-none">
           {hasDiscount && <Badge variant="sale" />}
-          {product.is_featured && !hasDiscount && <Badge variant="featured" />}
-          {product.availability_status !== 'in_stock' && (
-            <Badge status={product.availability_status} />
-          )}
-        </div>
-
-        {/* Quick Actions Hover Overlay */}
-        <div className="absolute inset-0 bg-brand-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 p-4">
-          {onQuickView && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onQuickView(product);
-              }}
-              className="p-2.5 bg-white/90 hover:bg-white text-brand-black rounded-full shadow-md transition-transform hover:scale-110"
-              title="Quick view"
-              aria-label="Quick view product"
-            >
-              <Eye className="w-4 h-4" />
-            </button>
-          )}
-
-          <button
-            onClick={handleAddToCart}
-            disabled={isOutOfStock}
-            className="p-2.5 bg-brand-black hover:bg-neutral-800 text-brand-cream rounded-full shadow-md transition-transform hover:scale-110 disabled:opacity-50 disabled:pointer-events-none"
-            title="Add to cart"
-            aria-label="Add product to cart"
-          >
-            {justAdded ? (
-              <Check className="w-4 h-4 text-emerald-400" />
-            ) : (
-              <ShoppingBag className="w-4 h-4" />
-            )}
-          </button>
+          {isOutOfStock && <Badge status="out_of_stock" />}
         </div>
       </Link>
 
       {/* Product Information */}
-      <div className="p-4 flex flex-col flex-1 justify-between bg-white">
+      <div className="pt-3 pb-1 flex flex-col flex-1 justify-between">
         <div>
-          {/* Category Tag */}
-          {product.category && (
-            <p className="text-[10px] uppercase font-heading tracking-widest text-neutral-400 mb-1">
-              {product.category.name}
-            </p>
-          )}
-
           {/* Product Name */}
           <Link
             to={`/product/${product.slug}`}
-            className="block text-xs sm:text-sm font-heading font-semibold text-brand-black hover:text-brand-gold transition-colors line-clamp-2 leading-tight"
+            className="block text-xs sm:text-sm font-heading font-medium text-[#111111] hover:text-[#777777] transition-colors truncate"
           >
             {product.name}
           </Link>
         </div>
 
-        {/* Price & Add to Cart button */}
-        <div className="mt-3 pt-3 border-t border-neutral-100 flex items-center justify-between">
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-sm font-heading font-bold text-brand-black">
+        {/* Price & Add Action */}
+        <div className="mt-1 flex items-center justify-between text-xs">
+          <div className="flex items-baseline gap-1.5 font-heading">
+            <span className="text-[#111111] font-medium">
               {settings.currency_symbol}{effectivePrice.toFixed(2)}
             </span>
             {hasDiscount && (
-              <span className="text-xs text-neutral-400 line-through">
+              <span className="text-[#777777] line-through text-[11px]">
                 {settings.currency_symbol}{Number(product.price).toFixed(2)}
               </span>
             )}
@@ -153,9 +110,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           <button
             onClick={handleAddToCart}
             disabled={isOutOfStock}
-            className="text-[11px] font-heading font-medium tracking-wider uppercase text-neutral-700 hover:text-brand-black hover:underline disabled:text-neutral-300 disabled:no-underline"
+            className="text-[11px] font-heading uppercase tracking-wider text-[#777777] hover:text-[#111111] transition-colors disabled:text-[#BBBBBB]"
           >
-            {isOutOfStock ? 'Sold Out' : justAdded ? 'Added!' : '+ Add'}
+            {isOutOfStock ? 'Sold Out' : justAdded ? 'Added' : '+ Add'}
           </button>
         </div>
       </div>

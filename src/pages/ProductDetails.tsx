@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   Truck,
   RotateCcw,
-  Sparkles,
 } from 'lucide-react';
 import { Product, CartItem } from '@/types';
 import { productService } from '@/services/products/productService';
@@ -95,13 +94,13 @@ export const ProductDetails: React.FC = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <Skeleton className="w-full aspect-square rounded-lg" />
+          <Skeleton className="w-full aspect-square rounded-[1px]" />
           <div className="space-y-4">
-            <Skeleton className="h-4 w-1/4" />
-            <Skeleton className="h-8 w-3/4" />
-            <Skeleton className="h-6 w-1/3" />
-            <Skeleton className="h-24 w-full" />
-            <Skeleton className="h-12 w-full" />
+            <Skeleton className="h-4 w-1/4 rounded-[1px]" />
+            <Skeleton className="h-8 w-3/4 rounded-[1px]" />
+            <Skeleton className="h-6 w-1/3 rounded-[1px]" />
+            <Skeleton className="h-24 w-full rounded-[1px]" />
+            <Skeleton className="h-12 w-full rounded-[1px]" />
           </div>
         </div>
       </div>
@@ -125,7 +124,7 @@ export const ProductDetails: React.FC = () => {
   const handleAddToCart = () => {
     if (isOutOfStock) return;
     addItem(product, quantity, selectedSize || 'Standard', selectedVariant);
-    toast.success(`${product.name} added to your cart!`);
+    toast.success(`${product.name} added to your bag`);
   };
 
   const handleDirectWhatsAppOrder = () => {
@@ -139,7 +138,7 @@ export const ProductDetails: React.FC = () => {
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
     setCopiedLink(true);
-    toast.success('Product link copied to clipboard!');
+    toast.success('Product link copied');
     setTimeout(() => setCopiedLink(false), 2500);
   };
 
@@ -159,10 +158,10 @@ export const ProductDetails: React.FC = () => {
       <div>
         <Link
           to="/shop"
-          className="inline-flex items-center gap-2 text-xs font-heading font-medium uppercase tracking-wider text-neutral-500 hover:text-brand-black transition-colors"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#777777] hover:text-[#111111] transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to All Caps</span>
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Back to Collection</span>
         </Link>
       </div>
 
@@ -176,43 +175,43 @@ export const ProductDetails: React.FC = () => {
         {/* Right Column: Information & Actions */}
         <div className="lg:col-span-5 space-y-6">
           {/* Header */}
-          <div className="border-b border-neutral-200/80 pb-5 space-y-2">
+          <div className="border-b border-[#EAEAEA] pb-5 space-y-2">
             <div className="flex items-center justify-between">
               {product.category ? (
                 <Link
                   to={`/shop?category=${product.category.id}`}
-                  className="text-xs uppercase font-heading tracking-widest text-brand-gold font-semibold hover:underline"
+                  className="text-[11px] uppercase tracking-widest text-[#777777] hover:text-[#111111] font-medium"
                 >
                   {product.category.name}
                 </Link>
               ) : (
-                <span className="text-xs uppercase font-heading tracking-widest text-brand-gold font-semibold">
+                <span className="text-[11px] uppercase tracking-widest text-[#777777]">
                   ValyrianCrown Original
                 </span>
               )}
 
               <button
                 onClick={handleShare}
-                className="p-1.5 text-neutral-400 hover:text-brand-black transition-colors rounded hover:bg-neutral-100"
+                className="p-1.5 text-[#777777] hover:text-[#111111] transition-colors rounded-[1px] hover:bg-[#F5F5F3]"
                 title="Share product"
                 aria-label="Share product"
               >
-                {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
+                {copiedLink ? <Check className="w-4 h-4 text-[#111111]" /> : <Share2 className="w-4 h-4" />}
               </button>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-heading font-bold uppercase tracking-tight text-brand-black">
+            <h1 className="text-2xl sm:text-3xl font-heading font-medium uppercase tracking-tight text-[#111111]">
               {product.name}
             </h1>
 
             {/* Price & Availability */}
             <div className="flex items-center justify-between pt-2">
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-heading font-bold text-brand-black">
+              <div className="flex items-baseline gap-2.5">
+                <span className="text-xl sm:text-2xl font-mono text-[#111111]">
                   {settings.currency_symbol}{effectivePrice.toFixed(2)}
                 </span>
                 {hasDiscount && (
-                  <span className="text-sm text-neutral-400 line-through">
+                  <span className="text-sm font-mono text-[#777777] line-through">
                     {settings.currency_symbol}{Number(product.price).toFixed(2)}
                   </span>
                 )}
@@ -227,7 +226,7 @@ export const ProductDetails: React.FC = () => {
 
           {/* Short Description */}
           {product.short_description && (
-            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#777777] leading-relaxed">
               {product.short_description}
             </p>
           )}
@@ -235,8 +234,8 @@ export const ProductDetails: React.FC = () => {
           {/* Size Selection */}
           {product.sizes && product.sizes.length > 0 && (
             <div className="space-y-2">
-              <label className="block text-xs uppercase tracking-wider font-heading font-semibold text-neutral-800">
-                Fit & Size:
+              <label className="block text-[11px] uppercase tracking-widest text-[#111111] font-medium">
+                Fit & Size
               </label>
               <div className="flex flex-wrap gap-2">
                 {product.sizes.map((size) => (
@@ -244,10 +243,10 @@ export const ProductDetails: React.FC = () => {
                     key={size}
                     type="button"
                     onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 text-xs font-heading font-medium tracking-wide uppercase rounded border transition-colors ${
+                    className={`px-3.5 py-1.5 text-xs tracking-wider uppercase rounded-[1px] border transition-colors ${
                       selectedSize === size
-                        ? 'border-brand-black bg-brand-black text-white'
-                        : 'border-neutral-200 text-neutral-700 hover:border-neutral-400 bg-white'
+                        ? 'border-[#111111] bg-[#111111] text-white'
+                        : 'border-[#EAEAEA] text-[#111111] hover:border-[#111111] bg-white'
                     }`}
                   >
                     {size}
@@ -260,8 +259,8 @@ export const ProductDetails: React.FC = () => {
           {/* Variant Selection */}
           {product.variants && product.variants.length > 0 && (
             <div className="space-y-2">
-              <label className="block text-xs uppercase tracking-wider font-heading font-semibold text-neutral-800">
-                Color Edition:
+              <label className="block text-[11px] uppercase tracking-widest text-[#111111] font-medium">
+                Color Edition
               </label>
               <div className="flex flex-wrap gap-2">
                 {product.variants[0].options.map((opt) => (
@@ -269,10 +268,10 @@ export const ProductDetails: React.FC = () => {
                     key={opt}
                     type="button"
                     onClick={() => setSelectedVariant(opt)}
-                    className={`px-4 py-2 text-xs font-heading font-medium tracking-wide rounded border transition-colors ${
+                    className={`px-3.5 py-1.5 text-xs tracking-wider rounded-[1px] border transition-colors ${
                       selectedVariant === opt
-                        ? 'border-brand-black bg-brand-black text-white'
-                        : 'border-neutral-200 text-neutral-700 hover:border-neutral-400 bg-white'
+                        ? 'border-[#111111] bg-[#111111] text-white'
+                        : 'border-[#EAEAEA] text-[#111111] hover:border-[#111111] bg-white'
                     }`}
                   >
                     {opt}
@@ -284,25 +283,25 @@ export const ProductDetails: React.FC = () => {
 
           {/* Quantity Selector */}
           <div className="space-y-2">
-            <label className="block text-xs uppercase tracking-wider font-heading font-semibold text-neutral-800">
-              Quantity:
+            <label className="block text-[11px] uppercase tracking-widest text-[#111111] font-medium">
+              Quantity
             </label>
-            <div className="inline-flex items-center border border-neutral-300 rounded bg-white">
+            <div className="inline-flex items-center border border-[#EAEAEA] rounded-[1px] bg-white">
               <button
                 type="button"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="px-3 py-2 text-neutral-500 hover:text-brand-black text-sm font-bold"
+                className="w-9 h-9 flex items-center justify-center text-[#777777] hover:text-[#111111] text-sm transition-colors"
                 aria-label="Decrease quantity"
               >
                 -
               </button>
-              <span className="px-4 py-2 text-xs font-heading font-bold text-brand-black select-none">
+              <span className="w-10 text-center font-mono text-xs text-[#111111] select-none">
                 {quantity}
               </span>
               <button
                 type="button"
                 onClick={() => setQuantity((q) => q + 1)}
-                className="px-3 py-2 text-neutral-500 hover:text-brand-black text-sm font-bold"
+                className="w-9 h-9 flex items-center justify-center text-[#777777] hover:text-[#111111] text-sm transition-colors"
                 aria-label="Increase quantity"
               >
                 +
@@ -311,54 +310,54 @@ export const ProductDetails: React.FC = () => {
           </div>
 
           {/* Call-to-action buttons */}
-          <div className="pt-4 space-y-3">
+          <div className="pt-2 space-y-2.5">
             {/* Add to Cart */}
             <button
               onClick={handleAddToCart}
               disabled={isOutOfStock}
-              className="w-full py-4 bg-brand-black hover:bg-neutral-800 text-brand-cream rounded font-heading font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 shadow-luxury hover:shadow-luxury-hover transition-all active:scale-[0.99] disabled:opacity-50"
+              className="w-full py-3.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium tracking-widest uppercase flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
             >
-              <ShoppingBag className="w-4 h-4 text-brand-gold" />
-              <span>{isOutOfStock ? 'Sold Out' : 'Add to Shopping Cart'}</span>
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span>{isOutOfStock ? 'Sold Out' : 'Add to Bag'}</span>
             </button>
 
             {/* Direct WhatsApp Order with Details */}
             <button
               onClick={handleDirectWhatsAppOrder}
               disabled={isOutOfStock}
-              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-heading font-semibold text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition-all active:scale-[0.99] disabled:opacity-50"
+              className="w-full py-3.5 border border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-white rounded-[1px] text-xs font-medium tracking-widest uppercase flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>Instant Order on WhatsApp</span>
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Order via WhatsApp</span>
             </button>
           </div>
 
           {/* Guarantees / Service Badges */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-6 border-t border-neutral-200/80 text-center">
-            <div className="p-2 sm:p-3 bg-white rounded border border-neutral-200/60">
-              <Truck className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-brand-gold mb-1" />
-              <p className="text-[9px] sm:text-[10px] uppercase font-heading font-bold text-neutral-800 leading-tight">Fast Delivery</p>
-              <p className="text-[8px] sm:text-[9px] text-neutral-500 mt-0.5">Across Ghana</p>
+          <div className="grid grid-cols-3 gap-3 pt-6 border-t border-[#EAEAEA] text-center">
+            <div className="py-3 px-2 border border-[#EAEAEA] rounded-[1px] bg-white">
+              <Truck className="w-4 h-4 mx-auto text-[#111111] mb-1.5" />
+              <p className="text-[10px] uppercase font-medium tracking-wider text-[#111111] leading-tight">Delivery</p>
+              <p className="text-[9px] text-[#777777] mt-0.5">Across Ghana</p>
             </div>
-            <div className="p-2 sm:p-3 bg-white rounded border border-neutral-200/60">
-              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-brand-gold mb-1" />
-              <p className="text-[9px] sm:text-[10px] uppercase font-heading font-bold text-neutral-800 leading-tight">100% Authentic</p>
-              <p className="text-[8px] sm:text-[9px] text-neutral-500 mt-0.5">Original Quality</p>
+            <div className="py-3 px-2 border border-[#EAEAEA] rounded-[1px] bg-white">
+              <ShieldCheck className="w-4 h-4 mx-auto text-[#111111] mb-1.5" />
+              <p className="text-[10px] uppercase font-medium tracking-wider text-[#111111] leading-tight">Authentic</p>
+              <p className="text-[9px] text-[#777777] mt-0.5">Original Craft</p>
             </div>
-            <div className="p-2 sm:p-3 bg-white rounded border border-neutral-200/60">
-              <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-brand-gold mb-1" />
-              <p className="text-[9px] sm:text-[10px] uppercase font-heading font-bold text-neutral-800 leading-tight">Personal Support</p>
-              <p className="text-[8px] sm:text-[9px] text-neutral-500 mt-0.5">Direct on WhatsApp</p>
+            <div className="py-3 px-2 border border-[#EAEAEA] rounded-[1px] bg-white">
+              <RotateCcw className="w-4 h-4 mx-auto text-[#111111] mb-1.5" />
+              <p className="text-[10px] uppercase font-medium tracking-wider text-[#111111] leading-tight">Direct Care</p>
+              <p className="text-[9px] text-[#777777] mt-0.5">Via WhatsApp</p>
             </div>
           </div>
 
           {/* Full Description & Specs */}
           {product.description && (
-            <div className="pt-6 border-t border-neutral-200/80 space-y-3">
-              <h3 className="text-xs uppercase tracking-widest font-heading font-bold text-brand-black">
+            <div className="pt-6 border-t border-[#EAEAEA] space-y-3">
+              <h3 className="text-xs uppercase tracking-widest font-medium text-[#111111]">
                 Product Details
               </h3>
-              <div className="text-xs text-neutral-600 leading-relaxed whitespace-pre-line font-light">
+              <div className="text-xs text-[#777777] leading-relaxed whitespace-pre-line">
                 {product.description}
               </div>
             </div>
@@ -375,20 +374,20 @@ export const ProductDetails: React.FC = () => {
 
       {/* Related Products Section */}
       {relatedProducts.length > 0 && (
-        <section className="pt-12 border-t border-neutral-200/80 space-y-6">
+        <section className="pt-16 border-t border-[#EAEAEA] space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl sm:text-2xl font-heading font-bold uppercase tracking-tight text-brand-black">
+            <h2 className="text-lg sm:text-xl font-heading font-medium uppercase tracking-tight text-[#111111]">
               You May Also Like
             </h2>
             <Link
               to="/shop"
-              className="text-xs font-heading font-semibold uppercase tracking-wider text-brand-gold hover:underline"
+              className="text-xs uppercase tracking-widest text-[#777777] hover:text-[#111111] transition-colors"
             >
-              View All Caps
+              View All Caps &rarr;
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-8 sm:gap-x-8 sm:gap-y-12">
             {relatedProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

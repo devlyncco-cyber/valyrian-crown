@@ -26,13 +26,13 @@ export const Logo: React.FC<LogoProps> = ({
       <img
         src={logoSrc}
         alt="ValyrianCrown"
-        className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
+        className="h-6 sm:h-7 md:h-8 w-auto object-contain"
         loading="eager"
       />
       {showTagline && (
         <span
-          className={`text-[9px] uppercase tracking-widest font-heading font-medium mt-0.5 ${
-            variant === 'white' ? 'text-gray-400' : 'text-neutral-500'
+          className={`text-[8px] sm:text-[9px] uppercase tracking-[0.2em] font-heading font-medium mt-1 ${
+            variant === 'white' ? 'text-neutral-400' : 'text-[#777777]'
           }`}
         >
           Wear the Crown. Own Your Style.

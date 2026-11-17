@@ -9,7 +9,6 @@ import {
   ArrowRight,
   Copy,
   Check,
-  AlertCircle,
   Truck,
   ShieldCheck,
   User,
@@ -120,42 +119,42 @@ export const Cart: React.FC = () => {
 
   if (items.length === 0) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-        <div className="w-20 h-20 rounded-full bg-white shadow-sm border border-neutral-200 flex items-center justify-center mx-auto mb-6 text-neutral-400">
-          <ShoppingBag className="w-10 h-10" />
+      <div className="max-w-4xl mx-auto px-4 py-24 text-center">
+        <div className="w-16 h-16 rounded-full bg-[#F5F5F3] border border-[#EAEAEA] flex items-center justify-center mx-auto mb-6 text-[#777777]">
+          <ShoppingBag className="w-8 h-8" />
         </div>
-        <h1 className="text-2xl font-heading font-bold uppercase tracking-tight text-brand-black mb-2">
-          Your Shopping Cart is Empty
+        <h1 className="text-xl sm:text-2xl font-heading font-medium uppercase tracking-tight text-[#111111] mb-2">
+          Your Shopping Bag is Empty
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 max-w-md mx-auto mb-8 leading-relaxed">
-          Looks like you haven't added any caps yet. Explore our handcrafted streetwear catalogue and wear your confidence today.
+        <p className="text-xs sm:text-sm text-[#777777] max-w-md mx-auto mb-8 leading-relaxed">
+          Looks like you haven't added any caps yet. Discover our collection and wear your confidence today.
         </p>
         <Link
           to="/shop"
-          className="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-black hover:bg-neutral-800 text-brand-cream rounded font-heading font-semibold text-xs tracking-widest uppercase shadow-luxury transition-all"
+          className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium tracking-widest uppercase transition-colors"
         >
           <span>Explore The Drops</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       {/* Header */}
-      <div className="border-b border-neutral-200/80 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="border-b border-[#EAEAEA] pb-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-widest font-heading font-semibold text-brand-gold">
-            Order Review
+          <p className="text-[11px] uppercase tracking-widest text-[#777777]">
+            Review & Checkout
           </p>
-          <h1 className="text-2xl sm:text-4xl font-heading font-bold uppercase tracking-tight text-brand-black">
-            Shopping Cart ({items.reduce((sum, i) => sum + i.quantity, 0)})
+          <h1 className="text-2xl sm:text-3xl font-heading font-medium uppercase tracking-tight text-[#111111] mt-1">
+            Shopping Bag ({items.reduce((sum, i) => sum + i.quantity, 0)})
           </h1>
         </div>
         <button
           onClick={clearCart}
-          className="text-xs uppercase font-heading text-neutral-500 hover:text-red-600 transition-colors self-start sm:self-auto"
+          className="text-xs uppercase tracking-wider text-[#777777] hover:text-[#111111] transition-colors self-start sm:self-auto"
         >
           Clear All Items
         </button>
@@ -163,7 +162,7 @@ export const Cart: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Cart Items List */}
-        <div className="lg:col-span-7 bg-white rounded-lg border border-neutral-200/80 shadow-sm divide-y divide-neutral-100 overflow-hidden">
+        <div className="lg:col-span-7 bg-white rounded-[1px] border border-[#EAEAEA] divide-y divide-[#EAEAEA] overflow-hidden">
           {items.map((item) => {
             const effectivePrice =
               item.product.sale_price !== null && item.product.sale_price !== undefined
@@ -176,25 +175,25 @@ export const Cart: React.FC = () => {
               '/images/brand/logo-dark.png';
 
             return (
-              <div key={item.id} className="p-4 sm:p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
+              <div key={item.id} className="p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
                 <div className="flex gap-4 items-center min-w-0">
                   <img
                     src={primaryImage}
                     alt={item.product.name}
-                    className="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover bg-brand-cream border border-neutral-200 shrink-0"
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-[1px] object-cover bg-[#F5F5F3] border border-[#EAEAEA] shrink-0"
                   />
                   <div className="min-w-0">
                     <Link
                       to={`/product/${item.product.slug}`}
-                      className="text-sm sm:text-base font-heading font-bold text-brand-black hover:text-brand-gold transition-colors block truncate"
+                      className="text-sm font-heading font-medium uppercase tracking-wide text-[#111111] hover:underline block truncate"
                     >
                       {item.product.name}
                     </Link>
-                    <div className="flex flex-wrap gap-2 text-xs text-neutral-500 mt-1">
-                      {item.selectedVariant && <span>Color: {item.selectedVariant}</span>}
+                    <div className="flex flex-wrap gap-2 text-xs text-[#777777] mt-1">
+                      {item.selectedVariant && <span>Edition: {item.selectedVariant}</span>}
                       {item.selectedSize && <span>• Size: {item.selectedSize}</span>}
                     </div>
-                    <p className="text-xs font-semibold text-brand-black mt-1 font-heading">
+                    <p className="text-xs font-mono text-[#111111] mt-1.5">
                       {settings.currency_symbol}{effectivePrice.toFixed(2)}
                     </p>
                   </div>
@@ -202,29 +201,29 @@ export const Cart: React.FC = () => {
 
                 <div className="flex items-center justify-between w-full sm:w-auto gap-6 sm:justify-end">
                   {/* Quantity selector */}
-                  <div className="flex items-center border border-neutral-200 rounded">
+                  <div className="flex items-center border border-[#EAEAEA] rounded-[1px] bg-white">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="p-1.5 px-3 text-neutral-500 hover:text-brand-black"
+                      className="px-2.5 py-1 text-[#777777] hover:text-[#111111] transition-colors"
                       aria-label="Decrease quantity"
                     >
-                      <Minus className="w-3.5 h-3.5" />
+                      <Minus className="w-3 h-3" />
                     </button>
-                    <span className="px-3 text-xs font-bold text-brand-black select-none">
+                    <span className="px-2.5 font-mono text-xs text-[#111111] select-none">
                       {item.quantity}
                     </span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="p-1.5 px-3 text-neutral-500 hover:text-brand-black"
+                      className="px-2.5 py-1 text-[#777777] hover:text-[#111111] transition-colors"
                       aria-label="Increase quantity"
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-3 h-3" />
                     </button>
                   </div>
 
                   {/* Subtotal */}
-                  <div className="text-right min-w-[80px]">
-                    <span className="text-sm font-heading font-bold text-brand-black">
+                  <div className="text-right min-w-[70px]">
+                    <span className="text-sm font-mono text-[#111111]">
                       {settings.currency_symbol}{(effectivePrice * item.quantity).toFixed(2)}
                     </span>
                   </div>
@@ -232,7 +231,7 @@ export const Cart: React.FC = () => {
                   {/* Remove */}
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="text-neutral-400 hover:text-red-600 transition-colors p-1"
+                    className="text-[#777777] hover:text-[#111111] transition-colors p-1"
                     aria-label="Remove item"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -244,20 +243,20 @@ export const Cart: React.FC = () => {
         </div>
 
         {/* Customer Details & WhatsApp Checkout Form */}
-        <div className="lg:col-span-5 bg-white rounded-lg border border-neutral-200/80 shadow-sm p-6 space-y-6">
+        <div className="lg:col-span-5 bg-white rounded-[1px] border border-[#EAEAEA] p-6 space-y-6">
           <div>
-            <h2 className="text-base font-heading font-bold uppercase tracking-wider text-brand-black pb-2 border-b border-neutral-100">
+            <h2 className="text-xs font-heading font-medium uppercase tracking-widest text-[#111111] pb-2 border-b border-[#EAEAEA]">
               Delivery Details & Checkout
             </h2>
-            <p className="text-xs text-neutral-500 mt-1">
-              Enter your details below. Your order and location will be sent to WhatsApp.
+            <p className="text-xs text-[#777777] mt-2">
+              Enter your details below. Your order and location will be sent directly to WhatsApp.
             </p>
           </div>
 
           <form onSubmit={handleWhatsAppCheckout} className="space-y-4">
             {/* Customer Name */}
             <div>
-              <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+              <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
                 Full Name *
               </label>
               <div className="relative">
@@ -267,15 +266,15 @@ export const Cart: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Kwame Mensah"
-                  className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                  className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
                 />
-                <User className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+                <User className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
               </div>
             </div>
 
             {/* Contact */}
             <div>
-              <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+              <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
                 Contact Phone / WhatsApp *
               </label>
               <div className="relative">
@@ -285,15 +284,15 @@ export const Cart: React.FC = () => {
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                   placeholder="e.g. 050 975 8180"
-                  className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                  className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
                 />
-                <Phone className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+                <Phone className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
               </div>
             </div>
 
             {/* Delivery Location */}
             <div>
-              <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+              <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
                 Delivery Location & Landmark *
               </label>
               <div className="relative">
@@ -303,50 +302,50 @@ export const Cart: React.FC = () => {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g. East Legon, Accra (near American House)"
-                  className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                  className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
                 />
-                <MapPin className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+                <MapPin className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
               </div>
-              <p className="text-[10px] text-neutral-500 mt-1">
-                Include city/town, neighbourhood, and landmark for accurate delivery dispatch.
+              <p className="text-[10px] text-[#777777] mt-1">
+                Include city/area and nearest landmark for accurate delivery dispatch.
               </p>
             </div>
 
             {/* Notes */}
             <div>
-              <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
-                Special Delivery Notes (Optional)
+              <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
+                Delivery Notes (Optional)
               </label>
               <div className="relative">
                 <input
                   type="text"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. Call before arrival, delivery after 2 PM"
-                  className="w-full pl-9 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                  placeholder="e.g. Call before arrival, leave with security"
+                  className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
                 />
-                <FileText className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5" />
+                <FileText className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
               </div>
             </div>
 
             {/* Order Cost Breakdown */}
-            <div className="pt-3 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
+            <div className="pt-3 border-t border-[#EAEAEA] space-y-2.5 text-xs text-[#777777]">
               <div className="flex justify-between">
                 <span>Caps Total:</span>
-                <span className="font-semibold text-brand-black">
+                <span className="font-mono text-[#111111]">
                   {settings.currency_symbol}{subtotal.toFixed(2)}
                 </span>
               </div>
-              <div className="flex justify-between items-center text-amber-900 bg-amber-50 p-2 rounded border border-amber-200/70">
+              <div className="flex justify-between items-center text-[#111111] bg-[#FAFAF8] p-2.5 rounded-[1px] border border-[#EAEAEA]">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <Truck className="w-3.5 h-3.5 text-amber-700" />
+                  <Truck className="w-3.5 h-3.5 text-[#111111]" />
                   <span>Delivery Fee:</span>
                 </span>
-                <span className="font-heading font-semibold">Calculated by seller in chat</span>
+                <span className="text-[11px] text-[#777777]">Calculated by seller in chat</span>
               </div>
-              <div className="pt-2 border-t border-neutral-100 flex justify-between text-base font-heading font-bold text-brand-black">
+              <div className="pt-2 border-t border-[#EAEAEA] flex justify-between text-sm font-medium text-[#111111]">
                 <span>Items Subtotal:</span>
-                <span>{settings.currency_symbol}{subtotal.toFixed(2)}</span>
+                <span className="font-mono">{settings.currency_symbol}{subtotal.toFixed(2)}</span>
               </div>
             </div>
 
@@ -354,35 +353,35 @@ export const Cart: React.FC = () => {
             <button
               type="submit"
               disabled={isCheckingOut}
-              className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-heading font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99] disabled:opacity-50"
+              className="w-full py-3.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium tracking-widest uppercase flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
             >
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-3.5 h-3.5" />
               <span>{isCheckingOut ? 'Validating Order...' : 'Checkout via WhatsApp'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </form>
 
           {/* Copy Message Fallback */}
           {checkoutMessage && (
-            <div className="pt-2">
+            <div className="pt-1">
               <button
                 type="button"
                 onClick={handleCopyMessage}
-                className="w-full py-2.5 bg-neutral-50 border border-neutral-200 hover:bg-neutral-100 text-neutral-800 rounded text-xs font-heading font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+                className="w-full py-2.5 bg-[#F5F5F3] hover:bg-[#EAEAEA] text-[#111111] rounded-[1px] text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'Order Message Copied!' : 'Copy Order Text to Clipboard'}</span>
+                {copied ? <Check className="w-3.5 h-3.5 text-[#111111]" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copied ? 'Order Text Copied' : 'Copy Order Text to Clipboard'}</span>
               </button>
             </div>
           )}
 
-          <div className="pt-4 border-t border-neutral-100 space-y-2 text-[11px] text-neutral-500">
+          <div className="pt-3 border-t border-[#EAEAEA] space-y-2 text-[11px] text-[#777777]">
             <div className="flex items-center gap-2">
-              <Truck className="w-4 h-4 text-brand-gold shrink-0" />
-              <span>Doorstep delivery arranged across Greater Accra & all Ghana regions.</span>
+              <Truck className="w-3.5 h-3.5 text-[#111111] shrink-0" />
+              <span>Doorstep delivery arranged across Accra & all Ghana regions.</span>
             </div>
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-brand-gold shrink-0" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#111111] shrink-0" />
               <span>Direct personal confirmation with the ValyrianCrown founder.</span>
             </div>
           </div>

@@ -7,7 +7,6 @@ import {
   Mail,
   Lock,
   User,
-  AlertCircle,
   KeyRound,
 } from 'lucide-react';
 import { Profile } from '@/types';
@@ -99,34 +98,30 @@ export const Admins: React.FC = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#EAEAEA]">
         <div>
-          <div className="flex items-center gap-2 text-brand-gold text-xs font-heading font-medium tracking-widest uppercase mb-1">
-            <Users className="w-4 h-4" />
-            <span>Access Control & Team</span>
-          </div>
-          <h1 className="text-2xl font-heading font-bold uppercase tracking-tight text-white">
+          <h1 className="text-2xl font-heading font-medium uppercase tracking-tight text-[#111111]">
             Authorized Administrators
           </h1>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[#777777] mt-1">
             Grant dashboard and catalogue management privileges to trusted brand co-founders and team members.
           </p>
         </div>
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="px-4 py-2.5 bg-brand-gold hover:bg-brand-gold-light text-brand-black rounded text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-colors self-start sm:self-auto shadow-luxury"
+          className="px-4 py-2.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium uppercase tracking-wider flex items-center gap-2 transition-colors self-start sm:self-auto"
         >
-          <UserPlus className="w-4 h-4" />
+          <UserPlus className="w-3.5 h-3.5" />
           <span>Add New Admin</span>
         </button>
       </div>
 
       {/* Security Advisory */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 flex items-start gap-3">
-        <ShieldCheck className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
-        <div className="text-xs text-neutral-400 space-y-1">
-          <p className="font-heading font-semibold text-neutral-200">
+      <div className="bg-white border border-[#EAEAEA] rounded-[1px] p-4 flex items-start gap-3">
+        <ShieldCheck className="w-4 h-4 text-[#111111] shrink-0 mt-0.5" />
+        <div className="text-xs text-[#777777] space-y-1">
+          <p className="font-medium text-[#111111]">
             Administrator Permissions Scope
           </p>
           <p>
@@ -136,28 +131,28 @@ export const Admins: React.FC = () => {
       </div>
 
       {/* Admin Table */}
-      <div className="bg-neutral-900 rounded-lg border border-neutral-800 overflow-hidden shadow-sm">
+      <div className="bg-white rounded-[1px] border border-[#EAEAEA] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[600px] text-left text-xs">
-            <thead className="bg-neutral-950/70 text-neutral-400 font-heading uppercase text-[10px] tracking-wider border-b border-neutral-800">
+            <thead className="bg-[#FAFAF8] text-[#777777] font-mono uppercase text-[10px] tracking-wider border-b border-[#EAEAEA]">
               <tr>
-                <th className="py-3.5 px-4 whitespace-nowrap">Admin Name</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Email</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Role</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Date Granted</th>
-                <th className="py-3.5 px-4 text-right whitespace-nowrap">Actions</th>
+                <th className="py-3 px-4">Admin Name</th>
+                <th className="py-3 px-4">Email</th>
+                <th className="py-3 px-4">Role</th>
+                <th className="py-3 px-4">Date Granted</th>
+                <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/80">
+            <tbody className="divide-y divide-[#EAEAEA]">
               {isLoading ? (
                 <tr>
-                  <td colSpan={5} className="py-12 text-center text-neutral-500">
+                  <td colSpan={5} className="py-12 text-center text-[#777777]">
                     Loading administrator roster...
                   </td>
                 </tr>
               ) : admins.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="py-12 text-center text-neutral-500">
+                  <td colSpan={5} className="py-12 text-center text-[#777777]">
                     No administrators found.
                   </td>
                 </tr>
@@ -166,18 +161,18 @@ export const Admins: React.FC = () => {
                   const isCurrent = currentUser?.id === adm.id || currentUser?.email === adm.email;
 
                   return (
-                    <tr key={adm.id} className="hover:bg-neutral-800/40 transition-colors">
-                      <td className="py-3.5 px-4 whitespace-nowrap">
+                    <tr key={adm.id} className="hover:bg-[#FAFAF8] transition-colors">
+                      <td className="py-3 px-4 whitespace-nowrap">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center font-heading font-bold text-brand-gold">
+                          <div className="w-7 h-7 rounded-[1px] bg-[#FAFAF8] border border-[#EAEAEA] flex items-center justify-center font-heading text-xs font-medium text-[#111111]">
                             {adm.full_name ? adm.full_name[0].toUpperCase() : 'A'}
                           </div>
                           <div>
-                            <p className="font-heading font-semibold text-white">
+                            <p className="font-heading font-medium uppercase tracking-tight text-[#111111]">
                               {adm.full_name || 'Administrator'}
                             </p>
                             {isCurrent && (
-                              <span className="text-[10px] text-brand-gold font-mono">
+                              <span className="text-[10px] text-[#777777] font-mono">
                                 (Current Session)
                               </span>
                             )}
@@ -185,18 +180,18 @@ export const Admins: React.FC = () => {
                         </div>
                       </td>
 
-                      <td className="py-3.5 px-4 text-neutral-300 font-mono whitespace-nowrap">
+                      <td className="py-3 px-4 text-[#777777] font-mono whitespace-nowrap">
                         {adm.email || 'Confidential'}
                       </td>
 
-                      <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[10px] font-heading font-semibold uppercase tracking-wider bg-brand-gold/15 text-brand-gold border border-brand-gold/30">
+                      <td className="py-3 px-4 whitespace-nowrap">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[1px] text-[10px] font-mono uppercase tracking-wider bg-white text-[#111111] border border-[#111111]">
                           <ShieldCheck className="w-3 h-3" />
                           <span>Admin</span>
                         </span>
                       </td>
 
-                      <td className="py-3.5 px-4 text-neutral-400 whitespace-nowrap">
+                      <td className="py-3 px-4 text-[#777777] whitespace-nowrap font-mono text-[11px]">
                         {new Date(adm.created_at).toLocaleDateString(undefined, {
                           year: 'numeric',
                           month: 'short',
@@ -204,17 +199,17 @@ export const Admins: React.FC = () => {
                         })}
                       </td>
 
-                      <td className="py-3.5 px-4 text-right">
+                      <td className="py-3 px-4 text-right">
                         {admins.length > 1 && !isCurrent ? (
                           <button
                             onClick={() => setAdminToRemove(adm)}
-                            className="p-1.5 text-neutral-400 hover:text-red-400 rounded hover:bg-neutral-800 transition-colors"
+                            className="p-1.5 text-[#777777] hover:text-red-600 rounded-[1px] hover:bg-red-50 transition-colors"
                             title="Revoke Admin Access"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         ) : (
-                          <span className="text-[11px] text-neutral-600 italic">Protected</span>
+                          <span className="text-[11px] text-[#777777]/60 italic">Protected</span>
                         )}
                       </td>
                     </tr>
@@ -235,7 +230,7 @@ export const Admins: React.FC = () => {
       >
         <form onSubmit={handleAddAdmin} className="space-y-4">
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Full Name *
             </label>
             <div className="relative">
@@ -245,14 +240,14 @@ export const Admins: React.FC = () => {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="e.g. Ama Osei"
-                className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <User className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+              <User className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Admin Email *
             </label>
             <div className="relative">
@@ -262,14 +257,14 @@ export const Admins: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="ama@valyriancrown.com"
-                className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <Mail className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+              <Mail className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Initial Password * (min. 6 characters)
             </label>
             <div className="relative">
@@ -280,34 +275,34 @@ export const Admins: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <Lock className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+              <Lock className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
-            <p className="text-[10px] text-neutral-400 mt-1">
+            <p className="text-[10px] text-[#777777] mt-1">
               The administrator will use this password to sign into the dashboard at /admin/login.
             </p>
           </div>
 
-          <div className="p-3 bg-neutral-100 rounded text-[11px] text-neutral-600 flex items-start gap-2">
-            <KeyRound className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+          <div className="p-3 bg-[#FAFAF8] border border-[#EAEAEA] rounded-[1px] text-[11px] text-[#777777] flex items-start gap-2">
+            <KeyRound className="w-4 h-4 text-[#111111] shrink-0 mt-0.5" />
             <span>
-              This will create a verified profile with role <code className="font-bold">admin</code> in Supabase.
+              This will create a verified profile with role <code className="font-mono text-[#111111]">admin</code> in Supabase.
             </span>
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-neutral-100">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EAEAEA]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 text-xs font-heading uppercase text-neutral-600 hover:text-neutral-900"
+              className="px-4 py-2 text-xs uppercase tracking-wider text-[#777777] hover:text-[#111111]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2.5 bg-brand-black text-brand-cream hover:bg-neutral-800 rounded text-xs font-heading font-semibold uppercase tracking-wider shadow-sm disabled:opacity-50"
+              className="px-6 py-2.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium uppercase tracking-widest disabled:opacity-40 transition-colors"
             >
               {isSubmitting ? 'Creating Admin...' : 'Grant Admin Privileges'}
             </button>
@@ -323,19 +318,19 @@ export const Admins: React.FC = () => {
         maxWidth="sm"
       >
         <div className="space-y-4">
-          <p className="text-xs text-neutral-600 leading-relaxed">
+          <p className="text-xs text-[#777777] leading-relaxed">
             Are you sure you want to revoke administrator access for{' '}
-            <strong className="text-neutral-900">
+            <strong className="text-[#111111]">
               {adminToRemove?.full_name || adminToRemove?.email}
             </strong>?
             They will no longer be able to log in to the admin panel.
           </p>
 
-          <div className="flex items-center justify-end gap-3 pt-3">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#EAEAEA]">
             <button
               type="button"
               onClick={() => setAdminToRemove(null)}
-              className="px-4 py-2 text-xs font-heading uppercase text-neutral-600 hover:text-neutral-900"
+              className="px-4 py-2 text-xs uppercase tracking-wider text-[#777777] hover:text-[#111111]"
             >
               Cancel
             </button>
@@ -343,7 +338,7 @@ export const Admins: React.FC = () => {
               type="button"
               disabled={isRevoking}
               onClick={handleRevokeAdmin}
-              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-xs font-heading font-semibold uppercase tracking-wider disabled:opacity-50"
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-[1px] text-xs font-medium uppercase tracking-wider disabled:opacity-40"
             >
               {isRevoking ? 'Revoking...' : 'Revoke Privileges'}
             </button>

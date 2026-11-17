@@ -6,7 +6,7 @@ import { CartDrawer } from '@/components/cart/CartDrawer';
 
 export const CustomerLayout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-brand-cream selection:bg-brand-gold selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FAFAF8] text-[#111111] selection:bg-[#111111] selection:text-white">
       <Navbar />
       <main className="flex-1">
         <Outlet />

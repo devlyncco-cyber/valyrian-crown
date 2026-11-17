@@ -17,7 +17,7 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === 'sale') {
     return (
       <span
-        className={`inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase bg-brand-gold text-brand-black shadow-sm ${className}`}
+        className={`inline-flex items-center px-2 py-0.5 text-[9px] font-medium tracking-widest uppercase bg-black text-white ${className}`}
       >
         Sale
       </span>
@@ -27,7 +27,7 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === 'featured') {
     return (
       <span
-        className={`inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase bg-brand-black text-brand-cream border border-brand-gold/30 ${className}`}
+        className={`inline-flex items-center px-2 py-0.5 text-[9px] font-medium tracking-widest uppercase bg-white text-black border border-[#EAEAEA] ${className}`}
       >
         Featured
       </span>
@@ -39,36 +39,34 @@ export const Badge: React.FC<BadgeProps> = ({
       case 'in_stock':
         return (
           <span
-            className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-medium tracking-wide bg-emerald-50 text-emerald-800 border border-emerald-200/60 ${className}`}
+            className={`inline-flex items-center gap-1.5 text-[10px] text-[#555555] font-normal tracking-wide ${className}`}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-black"></span>
             In Stock
           </span>
         );
       case 'low_stock':
         return (
           <span
-            className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-medium tracking-wide bg-amber-50 text-amber-800 border border-amber-200/60 ${className}`}
+            className={`inline-flex items-center gap-1.5 text-[10px] text-black font-medium tracking-wide ${className}`}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#777777]"></span>
             Low Stock
           </span>
         );
       case 'out_of_stock':
         return (
           <span
-            className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-medium tracking-wide bg-neutral-100 text-neutral-600 border border-neutral-200 ${className}`}
+            className={`inline-flex items-center px-2 py-0.5 text-[9px] font-medium tracking-widest uppercase bg-[#F5F5F3] text-[#777777] ${className}`}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-neutral-400"></span>
-            Out of Stock
+            Sold Out
           </span>
         );
       case 'pre_order':
         return (
           <span
-            className={`inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-medium tracking-wide bg-sky-50 text-sky-800 border border-sky-200/60 ${className}`}
+            className={`inline-flex items-center px-2 py-0.5 text-[9px] font-medium tracking-widest uppercase border border-[#EAEAEA] text-[#111111] ${className}`}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
             Pre-Order
           </span>
         );
@@ -77,7 +75,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide bg-neutral-100 text-neutral-800 ${className}`}
+      className={`inline-flex items-center px-2 py-0.5 text-[10px] font-medium tracking-wide bg-[#F5F5F3] text-[#111111] ${className}`}
     >
       {label}
     </span>

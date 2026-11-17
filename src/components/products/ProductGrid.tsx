@@ -19,16 +19,12 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-x-8 sm:gap-y-12">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex flex-col bg-white rounded-md p-3 space-y-3 border border-neutral-200/60">
-            <Skeleton className="w-full pt-[100%]" />
-            <Skeleton className="h-3 w-1/3" />
-            <Skeleton className="h-4 w-3/4" />
-            <div className="flex justify-between pt-2">
-              <Skeleton className="h-4 w-1/4" />
-              <Skeleton className="h-4 w-1/4" />
-            </div>
+          <div key={i} className="flex flex-col space-y-3">
+            <Skeleton className="w-full aspect-square bg-[#F5F5F3] rounded-[1px]" />
+            <Skeleton className="h-3 w-1/2 bg-[#F0F0ED] rounded-[1px]" />
+            <Skeleton className="h-3 w-1/4 bg-[#F0F0ED] rounded-[1px]" />
           </div>
         ))}
       </div>
@@ -37,18 +33,18 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 
   if (products.length === 0) {
     return (
-      <div className="py-16 text-center flex flex-col items-center justify-center bg-white rounded-lg border border-dashed border-neutral-300 p-8">
-        <PackageOpen className="w-12 h-12 text-neutral-400 mb-3" />
-        <h3 className="text-sm font-heading font-semibold text-neutral-800 uppercase tracking-wider mb-1">
+      <div className="py-20 text-center flex flex-col items-center justify-center border border-[#EAEAEA] p-8 bg-white">
+        <PackageOpen className="w-8 h-8 text-[#999999] mb-3 stroke-[1.2]" />
+        <h3 className="text-xs font-heading font-medium text-[#111111] uppercase tracking-[0.15em] mb-1">
           No Products Found
         </h3>
-        <p className="text-xs text-neutral-500 max-w-sm">{emptyMessage}</p>
+        <p className="text-xs text-[#777777] max-w-sm">{emptyMessage}</p>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-x-8 sm:gap-y-12">
       {products.map((product) => (
         <ProductCard
           key={product.id}

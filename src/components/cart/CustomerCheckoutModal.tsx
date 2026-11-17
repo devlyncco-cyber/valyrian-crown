@@ -5,12 +5,10 @@ import {
   Phone,
   MapPin,
   FileText,
-  AlertCircle,
   Truck,
   Copy,
   Check,
   ArrowRight,
-  X,
 } from 'lucide-react';
 import { CartItem, CustomerDetails } from '@/types';
 import { useStoreSettings } from '@/contexts/SettingsContext';
@@ -137,34 +135,36 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
       isOpen={isOpen}
       onClose={onClose}
       title="Complete Order via WhatsApp"
-      description="Provide your delivery details. Delivery charges are calculated by the seller in WhatsApp."
+      description="Delivery fee is calculated by the seller in WhatsApp based on your location."
       maxWidth="lg"
     >
       <div className="space-y-4 sm:space-y-5">
-        {/* Order Summary Pill */}
-        <div className="p-3.5 bg-neutral-50 rounded-lg border border-neutral-200/80 flex items-center justify-between text-xs">
+        {/* Order Summary */}
+        <div className="p-3.5 bg-[#FAFAF8] rounded-[1px] border border-[#EAEAEA] flex items-center justify-between text-xs">
           <div>
-            <span className="font-heading font-semibold text-neutral-800">
+            <span className="font-heading font-medium uppercase tracking-wider text-[#111111]">
               {totalItemsCount} {totalItemsCount === 1 ? 'Cap' : 'Caps'} in Order
             </span>
-            <p className="text-[11px] text-neutral-500">Items Total: {settings.currency_symbol}{itemsSubtotal.toFixed(2)}</p>
+            <p className="text-[11px] font-mono text-[#777777] mt-0.5">
+              Subtotal: {settings.currency_symbol}{itemsSubtotal.toFixed(2)}
+            </p>
           </div>
           <div className="text-right">
-            <span className="text-[10px] uppercase font-heading font-bold text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded border border-brand-gold/30">
+            <span className="text-[10px] uppercase font-mono tracking-widest text-[#111111] bg-white px-2.5 py-1 rounded-[1px] border border-[#EAEAEA]">
               WhatsApp Direct
             </span>
           </div>
         </div>
 
-        {/* Delivery Calculation Notice */}
-        <div className="bg-amber-50/90 border border-amber-200/80 rounded-lg p-3 text-xs text-amber-900 leading-relaxed flex items-start gap-2.5">
-          <Truck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+        {/* Delivery Notice */}
+        <div className="bg-[#FAFAF8] border border-[#EAEAEA] rounded-[1px] p-3 text-xs text-[#111111] leading-relaxed flex items-start gap-2.5">
+          <Truck className="w-4 h-4 text-[#111111] shrink-0 mt-0.5" />
           <div>
-            <p className="font-heading font-semibold text-amber-950">
-              Delivery Fee Notice:
+            <p className="font-medium text-[#111111]">
+              Delivery Fee Notice
             </p>
-            <p className="text-[11px] text-amber-900/90 mt-0.5">
-              The exact delivery fee is not charged online. It is calculated and agreed directly with the ValyrianCrown seller in the WhatsApp conversation based on your location.
+            <p className="text-[11px] text-[#777777] mt-0.5">
+              Delivery charges are not billed online. The exact fee is calculated and confirmed directly by the ValyrianCrown seller in the WhatsApp conversation according to your destination.
             </p>
           </div>
         </div>
@@ -173,7 +173,7 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name */}
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Your Full Name *
             </label>
             <div className="relative">
@@ -183,15 +183,15 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Kwame Mensah"
-                className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <User className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+              <User className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Contact Phone / WhatsApp *
             </label>
             <div className="relative">
@@ -201,15 +201,15 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
                 placeholder="e.g. 050 975 8180"
-                className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <Phone className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+              <Phone className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
           </div>
 
           {/* Delivery Location */}
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Delivery Location & Landmark *
             </label>
             <div className="relative">
@@ -218,19 +218,19 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
                 required
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                placeholder="e.g. East Legon, Accra (near American House) or Kumasi, KNUST"
-                className="w-full pl-9 pr-3 py-2.5 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                placeholder="e.g. East Legon, Accra (near American House) or KNUST, Kumasi"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <MapPin className="w-4 h-4 text-neutral-400 absolute left-3 top-3" />
+              <MapPin className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
-            <p className="text-[10px] text-neutral-500 mt-1">
-              Include city, area, and prominent landmark so the seller can calculate your delivery accurately.
+            <p className="text-[10px] text-[#777777] mt-1">
+              Include town/neighbourhood and nearest landmark so the seller can calculate your delivery.
             </p>
           </div>
 
           {/* Notes */}
           <div>
-            <label className="block text-xs font-heading font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-[#111111] mb-1">
               Additional Notes (Optional)
             </label>
             <div className="relative">
@@ -238,33 +238,33 @@ export const CustomerCheckoutModal: React.FC<CustomerCheckoutModalProps> = ({
                 type="text"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="e.g. Call before arrival, leave with security, or prefer morning delivery"
-                className="w-full pl-9 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded text-xs focus:outline-none focus:border-brand-black"
+                placeholder="e.g. Call before arrival, prefer morning delivery"
+                className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
               />
-              <FileText className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5" />
+              <FileText className="w-4 h-4 text-[#777777] absolute left-3 top-3" />
             </div>
           </div>
 
           {/* Submit Action */}
-          <div className="pt-3 space-y-2.5">
+          <div className="pt-2 space-y-2">
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-heading font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm transition-all disabled:opacity-50"
+              className="w-full py-3.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium tracking-widest uppercase flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
             >
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-3.5 h-3.5" />
               <span>{isProcessing ? 'Validating Order...' : 'Send Order to WhatsApp'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
 
             {generatedMessage && (
               <button
                 type="button"
                 onClick={handleCopyMessage}
-                className="w-full py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 rounded text-xs font-heading font-medium tracking-wide flex items-center justify-center gap-2 transition-colors"
+                className="w-full py-2.5 bg-[#F5F5F3] hover:bg-[#EAEAEA] text-[#111111] rounded-[1px] text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copied ? 'Order Message Copied!' : 'Copy Order Text to Clipboard'}</span>
+                {copied ? <Check className="w-3.5 h-3.5 text-[#111111]" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copied ? 'Order Text Copied' : 'Copy Order Text to Clipboard'}</span>
               </button>
             )}
           </div>

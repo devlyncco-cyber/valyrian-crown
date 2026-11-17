@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   PlusCircle,
   Search,
-  Filter,
   Edit,
   Trash2,
   Eye,
@@ -107,27 +106,27 @@ export const Products: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#EAEAEA]">
         <div>
-          <h1 className="text-2xl font-heading font-bold uppercase tracking-tight text-white">
+          <h1 className="text-2xl font-heading font-medium uppercase tracking-tight text-[#111111]">
             Product Catalogue
           </h1>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[#777777] mt-1">
             Manage your headwear line, pricing, stock levels and visibility.
           </p>
         </div>
 
         <Link
           to="/admin/products/new"
-          className="px-4 py-2.5 bg-brand-gold hover:bg-brand-gold-light text-brand-black rounded text-xs font-heading font-bold uppercase tracking-wider flex items-center gap-2 transition-colors self-start sm:self-auto shadow-luxury"
+          className="px-4 py-2.5 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs font-medium uppercase tracking-wider flex items-center gap-2 transition-colors self-start sm:self-auto"
         >
-          <PlusCircle className="w-4 h-4" />
+          <PlusCircle className="w-3.5 h-3.5" />
           <span>Add New Product</span>
         </Link>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-neutral-900 p-4 rounded-lg border border-neutral-800 flex flex-col sm:flex-row gap-4 justify-between items-center">
+      <div className="bg-white p-4 rounded-[1px] border border-[#EAEAEA] flex flex-col sm:flex-row gap-4 justify-between items-center">
         {/* Search */}
         <div className="relative w-full sm:w-80">
           <input
@@ -135,20 +134,19 @@ export const Products: React.FC = () => {
             placeholder="Search by cap name or slug..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 bg-neutral-950 border border-neutral-800 rounded text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-brand-gold"
+            className="w-full pl-9 pr-3 py-2 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] placeholder:text-[#777777]/60 focus:outline-none focus:border-[#111111]"
           />
-          <Search className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-[#777777] absolute left-3 top-2.5" />
         </div>
 
         {/* Category filter */}
-        <div className="w-full sm:w-auto flex items-center gap-2">
-          <Filter className="w-4 h-4 text-neutral-500 hidden sm:block" />
+        <div className="flex items-center gap-3 w-full sm:w-auto">
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full sm:w-auto bg-neutral-950 border border-neutral-800 text-xs text-neutral-300 py-2 px-3 rounded focus:outline-none focus:border-brand-gold cursor-pointer"
+            className="px-3 py-2 bg-white border border-[#EAEAEA] rounded-[1px] text-xs text-[#111111] focus:outline-none focus:border-[#111111] cursor-pointer w-full sm:w-auto"
           >
-            <option value="all">All Categories</option>
+            <option value="all">All Categories ({products.length})</option>
             {categories.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
@@ -158,32 +156,35 @@ export const Products: React.FC = () => {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-neutral-900 rounded-lg border border-neutral-800 overflow-hidden shadow-sm">
+      {/* Products Table */}
+      <div className="bg-white rounded-[1px] border border-[#EAEAEA] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[700px] text-left text-xs">
-            <thead className="bg-neutral-950/70 text-neutral-400 font-heading uppercase text-[10px] tracking-wider border-b border-neutral-800">
-              <tr>
-                <th className="py-3.5 px-4 whitespace-nowrap">Product</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Category</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Price</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Status</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Featured</th>
-                <th className="py-3.5 px-4 whitespace-nowrap">Published</th>
-                <th className="py-3.5 px-4 text-right whitespace-nowrap">Actions</th>
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-[#EAEAEA] bg-[#FAFAF8] text-[10px] uppercase font-mono tracking-wider text-[#777777]">
+                <th className="py-3 px-4">Cap</th>
+                <th className="py-3 px-4">Category</th>
+                <th className="py-3 px-4">Price</th>
+                <th className="py-3 px-4">Stock</th>
+                <th className="py-3 px-4">Visibility</th>
+                <th className="py-3 px-4 text-center">Featured</th>
+                <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/80">
+            <tbody className="divide-y divide-[#EAEAEA] text-xs">
               {isLoading ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-neutral-500">
-                    Loading product catalogue...
+                  <td colSpan={7} className="py-12 text-center text-[#777777]">
+                    Loading products...
                   </td>
                 </tr>
               ) : filteredProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-neutral-500">
-                    No products match your search or filter.
+                  <td colSpan={7} className="py-12 text-center text-[#777777]">
+                    <div className="flex flex-col items-center gap-2">
+                      <Package className="w-6 h-6 text-[#777777]/50" />
+                      <p>No products found matching your search.</p>
+                    </div>
                   </td>
                 </tr>
               ) : (
@@ -194,20 +195,20 @@ export const Products: React.FC = () => {
                     '/images/brand/logo-dark.png';
 
                   return (
-                    <tr key={p.id} className="hover:bg-neutral-800/40 transition-colors">
-                      {/* Name & Photo */}
-                      <td className="py-3 px-4 whitespace-nowrap">
+                    <tr key={p.id} className="hover:bg-[#FAFAF8] transition-colors">
+                      {/* Cap Item */}
+                      <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
                           <img
                             src={primaryImage}
                             alt={p.name}
-                            className="w-10 h-10 rounded object-cover bg-neutral-800 border border-neutral-700 shrink-0"
+                            className="w-12 h-12 rounded-[1px] object-cover bg-[#F5F5F3] border border-[#EAEAEA] shrink-0"
                           />
-                          <div className="min-w-0 max-w-xs">
-                            <p className="font-heading font-semibold text-white truncate">
+                          <div className="min-w-0">
+                            <p className="font-heading font-medium uppercase tracking-tight text-[#111111] truncate max-w-[200px] sm:max-w-xs">
                               {p.name}
                             </p>
-                            <p className="text-[10px] text-neutral-500 font-mono truncate">
+                            <p className="text-[10px] font-mono text-[#777777] truncate">
                               /{p.slug}
                             </p>
                           </div>
@@ -215,49 +216,39 @@ export const Products: React.FC = () => {
                       </td>
 
                       {/* Category */}
-                      <td className="py-3 px-4 text-neutral-300 whitespace-nowrap">
+                      <td className="py-3 px-4 text-[#777777]">
                         {p.category?.name || 'Unassigned'}
                       </td>
 
                       {/* Price */}
-                      <td className="py-3 px-4 font-heading font-semibold text-white whitespace-nowrap">
-                        GH₵{Number(p.price).toFixed(2)}
-                        {p.sale_price && (
-                          <span className="block text-[10px] text-brand-gold font-normal">
-                            Sale: GH₵{Number(p.sale_price).toFixed(2)}
+                      <td className="py-3 px-4">
+                        <div className="flex flex-col font-mono">
+                          <span className="text-[#111111] font-medium">
+                            GH₵{Number(p.sale_price ?? p.price).toFixed(2)}
                           </span>
-                        )}
+                          {p.sale_price && (
+                            <span className="text-[10px] text-[#777777] line-through">
+                              GH₵{Number(p.price).toFixed(2)}
+                            </span>
+                          )}
+                        </div>
                       </td>
 
-                      {/* Availability status */}
-                      <td className="py-3 px-4 whitespace-nowrap">
+                      {/* Stock Status */}
+                      <td className="py-3 px-4">
                         <Badge status={p.availability_status} />
                       </td>
 
-                      {/* Featured toggle */}
-                      <td className="py-3 px-4 whitespace-nowrap">
-                        <button
-                          onClick={() => handleToggleFeatured(p)}
-                          className={`p-1.5 rounded transition-colors ${
-                            p.is_featured
-                              ? 'text-brand-gold bg-brand-gold/10'
-                              : 'text-neutral-600 hover:text-neutral-400'
-                          }`}
-                          title={p.is_featured ? 'Featured on home' : 'Click to feature'}
-                        >
-                          <Sparkles className="w-4 h-4" />
-                        </button>
-                      </td>
-
-                      {/* Published toggle */}
-                      <td className="py-3 px-4 whitespace-nowrap">
+                      {/* Visibility Toggle */}
+                      <td className="py-3 px-4">
                         <button
                           onClick={() => handleTogglePublish(p)}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-heading font-semibold uppercase tracking-wider transition-colors ${
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[1px] text-[10px] font-mono uppercase tracking-wider transition-colors border ${
                             p.is_published
-                              ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-800'
-                              : 'bg-neutral-800 text-neutral-400 border border-neutral-700'
+                              ? 'bg-white text-[#111111] border-[#111111]'
+                              : 'bg-[#FAFAF8] text-[#777777] border-[#EAEAEA] hover:border-[#111111]'
                           }`}
+                          title="Click to toggle publication"
                         >
                           {p.is_published ? (
                             <>
@@ -273,29 +264,42 @@ export const Products: React.FC = () => {
                         </button>
                       </td>
 
+                      {/* Featured Toggle */}
+                      <td className="py-3 px-4 text-center">
+                        <button
+                          onClick={() => handleToggleFeatured(p)}
+                          className={`p-1.5 rounded-[1px] transition-colors ${
+                            p.is_featured
+                              ? 'text-[#111111]'
+                              : 'text-[#777777]/40 hover:text-[#111111]'
+                          }`}
+                          title="Toggle featured status"
+                        >
+                          <Sparkles className="w-4 h-4" />
+                        </button>
+                      </td>
+
                       {/* Actions */}
-                      <td className="py-3 px-4 text-right whitespace-nowrap">
-                        <div className="flex items-center justify-end gap-2">
+                      <td className="py-3 px-4 text-right">
+                        <div className="inline-flex items-center gap-1">
                           <Link
                             to={`/product/${p.slug}`}
                             target="_blank"
-                            className="p-1.5 text-neutral-400 hover:text-white rounded hover:bg-neutral-800"
-                            title="Preview on storefront"
+                            className="p-1.5 text-[#777777] hover:text-[#111111] rounded-[1px] hover:bg-[#FAFAF8] transition-colors"
+                            title="View on store"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                           </Link>
-
                           <Link
                             to={`/admin/products/edit/${p.id}`}
-                            className="p-1.5 text-neutral-400 hover:text-brand-gold rounded hover:bg-neutral-800"
+                            className="p-1.5 text-[#777777] hover:text-[#111111] rounded-[1px] hover:bg-[#FAFAF8] transition-colors"
                             title="Edit product"
                           >
                             <Edit className="w-3.5 h-3.5" />
                           </Link>
-
                           <button
                             onClick={() => setProductToDelete(p)}
-                            className="p-1.5 text-neutral-400 hover:text-red-400 rounded hover:bg-neutral-800"
+                            className="p-1.5 text-[#777777] hover:text-red-600 rounded-[1px] hover:bg-red-50 transition-colors"
                             title="Delete product"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -315,31 +319,27 @@ export const Products: React.FC = () => {
       <Modal
         isOpen={Boolean(productToDelete)}
         onClose={() => setProductToDelete(null)}
-        title="Confirm Product Deletion"
-        maxWidth="sm"
+        title="Confirm Deletion"
+        description="Are you sure you want to delete this cap from your catalogue?"
       >
         <div className="space-y-4">
-          <p className="text-xs text-neutral-600 leading-relaxed">
-            Are you sure you want to permanently delete{' '}
-            <strong className="text-neutral-900">{productToDelete?.name}</strong>?
-            This will remove all associated image references.
+          <p className="text-xs text-[#777777]">
+            This action will permanently delete <strong className="text-[#111111]">{productToDelete?.name}</strong> and all its associated image records. This action cannot be undone.
           </p>
 
-          <div className="flex items-center justify-end gap-3 pt-3">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#EAEAEA]">
             <button
-              type="button"
               onClick={() => setProductToDelete(null)}
-              className="px-4 py-2 text-xs font-heading uppercase text-neutral-600 hover:text-neutral-900"
+              className="px-4 py-2 bg-white border border-[#EAEAEA] text-[#777777] hover:text-[#111111] rounded-[1px] text-xs font-medium uppercase tracking-wider"
             >
               Cancel
             </button>
             <button
-              type="button"
-              disabled={isDeleting}
               onClick={confirmDelete}
-              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-xs font-heading font-semibold uppercase tracking-wider disabled:opacity-50"
+              disabled={isDeleting}
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-[1px] text-xs font-medium uppercase tracking-wider transition-colors disabled:opacity-40"
             >
-              {isDeleting ? 'Deleting...' : 'Delete Permanently'}
+              {isDeleting ? 'Deleting...' : 'Delete Product'}
             </button>
           </div>
         </div>

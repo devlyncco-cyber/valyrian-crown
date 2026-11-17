@@ -21,27 +21,27 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'relative inline-flex items-center justify-center font-heading font-medium tracking-wider uppercase transition-all duration-200 select-none active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100';
+    'relative inline-flex items-center justify-center font-heading text-xs tracking-widest uppercase transition-colors duration-200 select-none disabled:opacity-40 disabled:pointer-events-none rounded-[1px] font-medium';
 
   const sizeStyles = {
-    sm: 'text-xs px-3.5 py-1.5 rounded-sm gap-1.5',
-    md: 'text-xs md:text-sm px-5 py-2.5 rounded-sm gap-2',
-    lg: 'text-sm md:text-base px-7 py-3.5 rounded-sm gap-2.5',
+    sm: 'py-2 px-4 gap-1.5',
+    md: 'py-3 px-6 gap-2',
+    lg: 'py-4 px-8 gap-2.5',
   };
 
   const variantStyles = {
     primary:
-      'bg-brand-black text-brand-cream hover:bg-neutral-800 shadow-sm hover:shadow border border-brand-black',
+      'bg-[#111111] text-white hover:bg-[#262626] border border-[#111111]',
     secondary:
-      'bg-white text-brand-black hover:bg-neutral-50 border border-neutral-200 shadow-sm',
+      'bg-white text-[#111111] hover:bg-[#F5F5F3] border border-[#EAEAEA]',
     gold:
-      'bg-brand-gold text-brand-black hover:bg-brand-gold-light shadow-luxury font-semibold',
+      'bg-[#111111] text-white hover:bg-[#262626] border border-[#111111]',
     outline:
-      'bg-transparent text-brand-black border border-brand-black hover:bg-brand-black hover:text-white',
+      'bg-transparent text-[#111111] border border-[#111111] hover:bg-[#111111] hover:text-white',
     ghost:
-      'bg-transparent text-brand-black hover:bg-neutral-100',
+      'bg-transparent text-[#111111] hover:bg-[#F5F5F3]',
     danger:
-      'bg-red-600 text-white hover:bg-red-700 shadow-sm',
+      'bg-[#111111] text-white hover:bg-red-700 border border-transparent',
   };
 
   return (

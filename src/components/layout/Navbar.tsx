@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Menu, X, PhoneCall } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import { useCartStore } from '@/store/cartStore';
 import { useStoreSettings } from '@/contexts/SettingsContext';
@@ -28,28 +28,26 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Shop Collection', path: '/shop' },
-    { name: 'Our Story', path: '/about' },
+    { name: 'Shop', path: '/shop' },
+    { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
     <>
-      {/* Top Brand Notification Banner */}
-      <div className="bg-brand-black text-brand-cream text-[10px] sm:text-[11px] font-heading font-medium tracking-widest uppercase py-2 px-3 sm:px-4 text-center border-b border-white/10 flex items-center justify-center gap-2 sm:gap-4">
-        <span className="truncate">{settings.brand_tagline}</span>
-        <span className="hidden sm:inline text-brand-gold shrink-0">•</span>
-        <span className="hidden sm:inline text-gray-300 shrink-0">
+      {/* Subtle Top Notification */}
+      <div className="bg-[#111111] text-[#FAFAF8] text-[10px] tracking-[0.2em] uppercase py-2 px-4 text-center font-heading font-normal">
+        <span>{settings.brand_tagline}</span>
+        <span className="hidden sm:inline mx-3 text-neutral-500">•</span>
+        <span className="hidden sm:inline text-neutral-400">
           WhatsApp Orders: {settings.contact_phone}
         </span>
       </div>
 
-      {/* Main Sticky Navbar */}
+      {/* Main Minimalist Navbar */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-brand-cream/95 backdrop-blur-md shadow-sm border-b border-neutral-200/60 py-3'
-            : 'bg-brand-cream border-b border-neutral-200/40 py-4 sm:py-5'
+        className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-200 border-b border-[#EAEAEA] ${
+          isScrolled ? 'py-3' : 'py-4 sm:py-4.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -57,66 +55,51 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 -ml-2 text-brand-black hover:text-brand-gold transition-colors focus:outline-none"
+              className="p-1.5 -ml-1 text-[#111111] hover:text-[#777777] transition-colors focus:outline-none"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 stroke-[1.5]" /> : <Menu className="w-5 h-5 stroke-[1.5]" />}
             </button>
           </div>
 
-          {/* Brand Logo */}
-          <div className="flex-1 lg:flex-none flex justify-center lg:justify-start px-2 min-w-0">
-            <Logo variant="dark" showTagline={false} className="lg:hidden" />
-            <Logo variant="dark" showTagline={true} className="hidden lg:inline-flex" />
+          {/* Brand Logo on Left */}
+          <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
+            <Logo variant="dark" showTagline={false} />
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation Links Centered */}
+          <nav className="hidden lg:flex items-center space-x-10">
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-xs uppercase tracking-widest font-heading font-medium transition-colors hover:text-brand-gold relative py-1 ${
-                    isActive ? 'text-brand-black font-semibold' : 'text-neutral-600'
+                  `text-xs uppercase tracking-[0.18em] font-heading transition-colors py-1 ${
+                    isActive ? 'text-[#111111] font-semibold' : 'text-[#777777] hover:text-[#111111]'
                   }`
                 }
               >
-                {({ isActive }) => (
-                  <>
-                    {link.name}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-gold rounded-full" />
-                    )}
-                  </>
-                )}
+                {link.name}
               </NavLink>
             ))}
           </nav>
 
-          {/* Actions: Phone & Shopping Cart */}
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            <a
-              href={`tel:${settings.contact_phone}`}
-              className="hidden md:flex items-center gap-1.5 text-xs font-heading tracking-wider uppercase text-neutral-600 hover:text-brand-black transition-colors"
-              title="Call us"
-            >
-              <PhoneCall className="w-3.5 h-3.5 text-brand-gold" />
-              <span>{settings.contact_phone}</span>
-            </a>
-
-            {/* Shopping Cart Button */}
+          {/* Shopping Bag Button on Right */}
+          <div className="flex items-center space-x-5">
             <button
               onClick={openCart}
-              className="relative p-2.5 bg-brand-black text-brand-cream hover:bg-neutral-800 rounded-full transition-all duration-200 active:scale-95 shadow-sm group"
-              aria-label={`Shopping Cart with ${totalItems} items`}
+              className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] font-heading text-[#111111] hover:text-[#777777] transition-colors p-1"
+              aria-label={`Shopping bag with ${totalItems} items`}
             >
-              <ShoppingBag className="w-4 h-4 group-hover:scale-110 transition-transform text-white" />
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-gold text-brand-black text-[10px] font-heading font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-cream animate-fade-in shadow-sm">
-                  {totalItems > 99 ? '99+' : totalItems}
-                </span>
-              )}
+              <div className="relative">
+                <ShoppingBag className="w-4 h-4 stroke-[1.5]" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1.5 -right-2 bg-black text-white text-[9px] font-heading font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </div>
+              <span className="hidden sm:inline font-medium text-[11px]">Bag</span>
             </button>
           </div>
         </div>
@@ -129,36 +112,34 @@ export const Navbar: React.FC = () => {
         }`}
       >
         <div
-          className="fixed inset-0 bg-brand-black/60 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
           onClick={() => setMobileMenuOpen(false)}
         />
         <div
-          className={`fixed inset-y-0 left-0 w-[80%] max-w-sm bg-brand-cream shadow-2xl p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out ${
+          className={`fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white border-r border-[#EAEAEA] p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out ${
             mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
           <div>
-            <div className="flex items-center justify-between pb-6 border-b border-neutral-200">
-              <Logo variant="dark" />
+            <div className="flex items-center justify-between pb-6 border-b border-[#EAEAEA]">
+              <Logo variant="dark" showTagline={false} />
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-neutral-500 hover:text-brand-black"
+                className="p-1.5 text-[#777777] hover:text-[#111111]"
                 aria-label="Close menu"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 stroke-[1.5]" />
               </button>
             </div>
 
-            <nav className="mt-8 flex flex-col space-y-5">
+            <nav className="mt-8 flex flex-col space-y-6">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.path}
                   to={link.path}
                   className={({ isActive }) =>
-                    `text-sm uppercase tracking-wider font-heading py-2 transition-colors ${
-                      isActive
-                        ? 'text-brand-black font-bold pl-3 border-l-2 border-brand-gold'
-                        : 'text-neutral-600 hover:text-brand-black'
+                    `text-sm uppercase tracking-[0.2em] font-heading transition-colors ${
+                      isActive ? 'text-[#111111] font-semibold' : 'text-[#777777] hover:text-[#111111]'
                     }`
                   }
                 >
@@ -168,19 +149,19 @@ export const Navbar: React.FC = () => {
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-neutral-200 space-y-4">
-            <div className="text-xs text-neutral-500 space-y-1">
-              <p className="font-heading font-semibold text-brand-black">ValyrianCrown Support</p>
-              <p>Call: {settings.contact_phone}</p>
+          <div className="pt-6 border-t border-[#EAEAEA] space-y-4">
+            <div className="text-xs text-[#777777] space-y-1">
+              <p className="font-heading font-medium text-[#111111] uppercase tracking-wider text-[11px]">Contact & Order</p>
+              <p>Phone: {settings.contact_phone}</p>
               <p>WhatsApp: {settings.whatsapp_number}</p>
             </div>
             <a
               href={`https://wa.me/${settings.whatsapp_number.replace(/\D/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs uppercase tracking-wider font-heading font-medium flex items-center justify-center gap-2"
+              className="w-full py-3 bg-[#111111] hover:bg-[#262626] text-white rounded-[1px] text-xs uppercase tracking-[0.15em] font-heading font-medium flex items-center justify-center transition-colors"
             >
-              Chat on WhatsApp
+              Order via WhatsApp
             </a>
           </div>
         </div>
